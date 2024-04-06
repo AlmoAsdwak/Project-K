@@ -2,31 +2,81 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project_K.App">
-    <!--
-        Define global resources and styles here, that apply to all pages in your app.
-    -->
+
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
-            <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Disabled">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#332196F3" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
-            </Style>
-        </ResourceDictionary>        
+            <DataTemplate x:Key="Rozvrh">
+                <StackLayout Margin="0,0,0,12">
+                    <Frame Padding="5" Margin="0,0,0,0" HeightRequest="52" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True">
+                        <Frame.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Single">
+                                <On Platform="iOS" Value="12" />
+                                <On Platform="Android" Value="12" />
+                                <On Platform="UWP" Value="12" />
+                            </OnPlatform>
+                        </Frame.CornerRadius>
+                        <Grid>
+                            <Label
+                           TextColor="White"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="Start"
+                                FontSize="20"
+                                FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                           Text="{Binding Subject}"
+                           FontAttributes="Bold" 
+                           Margin="10,0,0,0"/>
+                            <StackLayout HorizontalOptions="End" VerticalOptions="CenterAndExpand">
+                                <Label TextColor="White"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalTextAlignment="Center"
+                               FontSize="20"
+                                       FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                               Text="{Binding ClassRoom}"
+                               FontAttributes="Bold" 
+                               IsVisible="true"
+                               Margin="0,0,10,0"/>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                                <Label TextColor="White"
+                               VerticalTextAlignment="Center"
+                               Text="{Binding FormattedStartTime}"
+                               HorizontalOptions="CenterAndExpand"
+                                       FontSize="20"
+                               FontAttributes="Bold"
+                               Margin="0,0,0,0"
+                                       FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                               IsVisible="true"/>
+                                <Label Text="-"
+                               TextColor="White"
+                                       FontSize="20"
+                                       FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalTextAlignment="Center"/>
+                                <Label TextColor="White"
+                               HorizontalOptions="CenterAndExpand"
+                                    FontSize="20"
+                               VerticalTextAlignment="Center"
+                               Text="{Binding TimeTo}"
+                               FontAttributes="Bold" 
+                                       FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                               IsVisible="true"
+                               Margin="0,0,0,0"/>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+                                <Label TextColor="White"
+                               VerticalTextAlignment="Center"
+                               Text="{Binding Teacher}"
+                               HorizontalOptions="CenterAndExpand"
+                               FontAttributes="Bold"
+                                   FontSize="11"
+                               Margin="0,35,0,0"
+                                       FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                               IsVisible="true"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
