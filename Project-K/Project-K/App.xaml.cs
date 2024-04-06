@@ -1,6 +1,7 @@
 ﻿using Project_K.Services;
 using Project_K.Views;
 using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,7 +15,14 @@ namespace Project_K
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            if (SecureStorage.GetAsync("User").Result == null)
+            {
+                MainPage = new LoginPage();
+            }
+            else
+            {
+                MainPage = new AppShell();
+            }
         }
 
         protected override void OnStart()

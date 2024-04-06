@@ -1,14 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
              x:Class="Project_K.Views.LoginPage"
-             Shell.NavBarIsVisible="False">
-    <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
-        </StackLayout>
-    </ContentPage.Content>
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="Black">
+    <RefreshView>
+        <Grid>
+            <StackLayout VerticalOptions="Start">
+                    <zxing:ZXingScannerView x:Name="scannerView"
+                                        WidthRequest="300"
+                                        HeightRequest="300"
+                                        IsScanning="True"/>
+                <Button x:Name="HelpButton" Clicked="HelpButton_Clicked" Text="Help" CornerRadius="12" FontFamily="Khyay-Regular.ttf#Khyay-Regular" TextColor="White" BackgroundColor="DarkOrange" FontSize="20">
+                    
+                </Button>
+                <Label x:Name="Label" FontFamily="Khyay-Regular.ttf#Khyay-Regular" HorizontalTextAlignment="Center" Text="" TextColor="White" FontSize="18"></Label>
+                </StackLayout>
+            <StackLayout VerticalOptions="End">
+                <Button VerticalOptions="End" Text="Login" Clicked="Button_Clicked" HeightRequest="75"
+                     BackgroundColor="#E28C09"
+                     TextColor="White"
+                     FontSize="20"
+                     CornerRadius="20"
+                     FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                     FontAttributes="Bold"/>
+                </StackLayout>
+        </Grid>
+
+    </RefreshView>
 </ContentPage>
