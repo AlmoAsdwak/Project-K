@@ -25,7 +25,26 @@ namespace Project_K.ViewModels
             get { return title; }
             set { SetProperty(ref title, value); }
         }
+        public string Day
+        {
+            get { return GetDate(); }
+        }
 
+        private string GetDate()
+        {
+            DayOfWeek now = DateTime.Now.DayOfWeek;
+            switch (now)
+            {
+                case DayOfWeek.Friday: return "Pátek";
+                case DayOfWeek.Monday: return "Pondělí";
+                case DayOfWeek.Saturday: return "Sobota\nNení rozvrh";
+                case DayOfWeek.Sunday: return "Neděle\nNení rozvrh";
+                case DayOfWeek.Thursday: return "Čtvrtek";
+                case DayOfWeek.Tuesday: return "Úterý";
+                case DayOfWeek.Wednesday: return "Středa";
+                default: return string.Empty;
+            }
+        }
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)

@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\RozvrhPage.xaml.cs">
+      <DependentUpon>RozvrhPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

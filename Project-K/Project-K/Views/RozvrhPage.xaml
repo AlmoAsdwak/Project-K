@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project_K.Views.RozvrhPage"
+             xmlns:vm="clr-namespace:Project_K.ViewModels"
+              xmlns:data="clr-namespace:Project_K.Services"
+             Title="{Binding Title}"
+             BackgroundColor="Black"
+             >
+
+
+    <ContentPage.BindingContext>
+        <vm:RozvrhViewModel />
+    </ContentPage.BindingContext>
+
+    <RefreshView Command="{Binding RefreshRozvrh}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="1">
+                <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                    <Label Text="{Binding Day}" HorizontalTextAlignment="Center" FontFamily="Khyay-Regular.ttf#Khyay-Regular" TextColor="White" FontSize="Title"/>
+                    <CollectionView Margin="20,0,0,0"
+                                    Background="Black"
+                                    ItemsSource="{x:Static data:GetRozvrh.Rozvrh}"
+                                    ItemTemplate="{StaticResource Rozvrh}"/>
+
+
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </RefreshView>
+</ContentPage>
