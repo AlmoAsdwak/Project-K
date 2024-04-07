@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
+using Xamarin.Essentials;
 
 namespace Project_K.Services
 {
@@ -13,7 +15,8 @@ namespace Project_K.Services
         public static IList<Models.Cell> Rozvrh { get; private set; }
         static GetRozvrh()
         {
-            int id = 12412;
+            var storage = SecureStorage.GetAsync("Id").Result;
+            int id = Convert.ToInt32(storage);
             DateTime date = DateTime.Now;
             if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
                 return;

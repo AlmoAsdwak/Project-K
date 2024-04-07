@@ -15,7 +15,8 @@ namespace Project_K
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            if (SecureStorage.GetAsync("User").Result == null)
+            var Id = SecureStorage.GetAsync("Id").Result;
+            if (Id == null)
             {
                 MainPage = new LoginPage();
             }

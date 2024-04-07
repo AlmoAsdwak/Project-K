@@ -21,12 +21,29 @@ namespace Project_K.Views
     {
         public LoginPage()
         {
+            InitializeLoginPageAsync();
+        }
+
+        private async Task InitializeLoginPageAsync()
+        {
+            var Id = await SecureStorage.GetAsync("Id");
+            if (Id != null)
+            {
+                var confirmed = await DisplayAlert("Logout Confirmation", "Jste si jisti že se chcete odhlásit?", "Ano", "Ne");
+                if (!confirmed)
+                {
+                    App.Current.MainPage = new AppShell();
+                    return;
+                }
+            }
+
             SecureStorage.RemoveAll();
             Shell.SetTabBarIsVisible(this, false);
             InitializeComponent();
             this.BindingContext = new LoginViewModel();
             scannerView.OnScanResult += Result;
         }
+
         public void Result(ZXing.Result result)
         {
             Device.BeginInvokeOnMainThread(() =>
@@ -47,18 +64,33 @@ namespace Project_K.Views
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            var pattern = "{\\\"FamilyName\\\":\\\"\\w+\\\",\\\"GivenName\\\":\\\"\\w+\\\",\\\"Email\\\":\\\"\\w+\\W\\w+@ssakhk\\.cz\\\",\\\"UserId\\\":\\d+}";
+            var pattern = "{\"FamilyName\":\"[\\p{L}´ˇ]*\",\"GivenName\":\"[\\p{L}´ˇ]*\",\"Email\":\"\\w+.\\w+@ssakhk.cz\",\"UserId\":\\d+}";
             var match = Regex.Match(Label.Text, pattern);
             if (!match.Success)
             {
                 DisplayAlert("Wrong format", "Youre QR code have bad format", "OK");
                 return;
             }
-            SecureStorage.SetAsync("User", Label.Text).Wait();
-            var userData = SecureStorage.GetAsync("User").Result;
-            Debug.WriteLine($"UserData: {userData}");
 
-            Process.GetCurrentProcess().Kill();
+            var GetFamilyName = Regex.Match(Label.Text, "(?<=\"FamilyName\":\")[\\p{L}´ˇ]*");
+            var GetGivenName = Regex.Match(Label.Text, "(?<=\"GivenName\":\")[\\p{L}´ˇ]*");
+            var GetMail = Regex.Match(Label.Text, "(?<=\\\"Email\\\":\")\\w+.\\w+@ssakhk.cz");
+            var GetId = Regex.Match(Label.Text, "(?<=\"UserId\":)\\d+");
+
+            SecureStorage.SetAsync("FamilyName", GetFamilyName.ToString()).Wait();
+            SecureStorage.SetAsync("GivenName", GetGivenName.ToString()).Wait();
+            SecureStorage.SetAsync("Mail", GetMail.ToString()).Wait();
+            SecureStorage.SetAsync("Id", GetId.ToString()).Wait();
+
+            var userData = SecureStorage.GetAsync("Id").Result;
+            if (userData == null)
+            {
+                DisplayAlert("Wrong format", "Youre QR code have bad format", "OK");
+                SecureStorage.RemoveAll();
+                return;
+            }
+
+            App.Current.MainPage = new AppShell();
         }
     }
 
