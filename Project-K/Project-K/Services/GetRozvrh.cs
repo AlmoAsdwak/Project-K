@@ -1,8 +1,10 @@
 ﻿using Project_K.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -15,6 +17,7 @@ namespace Project_K.Services
         public static IList<Models.Cell> Rozvrh { get; private set; }
         static GetRozvrh()
         {
+            
             var storage = SecureStorage.GetAsync("Id").Result;
             int id = Convert.ToInt32(storage);
             DateTime date = DateTime.Now;

@@ -19,7 +19,7 @@ namespace Project_K.ViewModels
         async Task Call()
         {
             IsBusy = true;
-            Thread.Sleep(500);
+            App.Current.MainPage = new AppShell();
             IsBusy = false;
         }
         public ICommand OpenWebCommand { get; }
