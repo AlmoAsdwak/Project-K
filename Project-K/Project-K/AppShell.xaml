@@ -31,7 +31,7 @@
     
     <TabBar>
         <ShellContent Title="Rozvrh" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:RozvrhPage}" />
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <ShellContent Title="Kde je učitel" Icon="profile_icon.png" ContentTemplate="{DataTemplate local:UcitelPickerPage}" />
         <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
         <ShellContent Title="Odhlásit" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:LoginPage}" />
     </TabBar>
