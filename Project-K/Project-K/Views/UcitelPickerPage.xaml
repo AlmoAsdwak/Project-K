@@ -2,51 +2,66 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project_K.Views.UcitelPickerPage"
-             BackgroundColor="Black">
-    <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-            <Label Text="Select an item:"/>
-            <Picker x:Name="kokot"
+             xmlns:data="clr-namespace:Project_K.Services"
+             BackgroundColor="Black"
+             Title="Kde je učitel">
+    <RefreshView>
+        <Grid>
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label Text="Vyber si učitele:"/>
+                <Picker x:Name="PickerOfTeachers"
                     Title="Vyber si učitele"
                     TitleColor="White">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Jan Lang</x:String>
-                        <x:String>Richard Rejthar</x:String>
-                        <x:String>Matěj Lang</x:String>
-                        <x:String>Libor Beneš</x:String>
-                        <x:String>Michaela Ducháčková</x:String>
-                        <x:String>Milan Hloušek</x:String>
-                        <x:String>Jaroslav Hývl</x:String>
-                        <x:String>Zlata Karpíšková</x:String>
-                        <x:String>Eva Kuntová</x:String>
-                        <x:String>Roman Loskot</x:String>
-                        <x:String>Jaroslav Maťátko</x:String>
-                        <x:String>Martin Mercl</x:String>
-                        <x:String>Štěpán Mach</x:String>
-                        <x:String>Josef Matějus</x:String>
-                        <x:String>Martin Markoš</x:String>
-                        <x:String>Ilona Mayerová</x:String>
-                        <x:String>Jiří Petera</x:String>
-                        <x:String>Miloslav Penc</x:String>
-                        <x:String>Lucie Porter</x:String>
-                        <x:String>David Podzimek</x:String>
-                        <x:String>Jana Radoňová</x:String>
-                        <x:String>Igor Ročín</x:String>
-                        <x:String>Jiří Špičan</x:String>
-                        <x:String>Simona Trnková</x:String>
-                        <x:String>Tomáš Záhořík</x:String>
-                        <x:String>Pavel Trnka</x:String>
-                        <x:String>Josef Zelba</x:String>
-                        <x:String>Šárka Žemličková</x:String>
-                        <x:String>Shane Hertnon</x:String>
-                        <x:String>Michal Janko</x:String>
-                        <x:String>Tadeáš Němec</x:String>
-                        <x:String>Michal Macinka</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-            <Button Text="Výběr"Clicked="Button_Clicked_1"></Button>
-        </StackLayout>
-    </ContentPage.Content>
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Jan Lang</x:String>
+                            <x:String>Richard Rejthar</x:String>
+                            <x:String>Matěj Lang</x:String>
+                            <x:String>Libor Beneš</x:String>
+                            <x:String>Michaela Ducháčková</x:String>
+                            <x:String>Milan Hloušek</x:String>
+                            <x:String>Jaroslav Hývl</x:String>
+                            <x:String>Zlata Karpíšková</x:String>
+                            <x:String>Eva Kuntová</x:String>
+                            <x:String>Roman Loskot</x:String>
+                            <x:String>Jaroslav Maťátko</x:String>
+                            <x:String>Martin Mercl</x:String>
+                            <x:String>Štěpán Mach</x:String>
+                            <x:String>Josef Matějus</x:String>
+                            <x:String>Martin Markoš</x:String>
+                            <x:String>Ilona Mayerová</x:String>
+                            <x:String>Jiří Petera</x:String>
+                            <x:String>Miloslav Penc</x:String>
+                            <x:String>Lucie Porter</x:String>
+                            <x:String>David Podzimek</x:String>
+                            <x:String>Jana Radoňová</x:String>
+                            <x:String>Igor Ročín</x:String>
+                            <x:String>Jiří Špičan</x:String>
+                            <x:String>Simona Trnková</x:String>
+                            <x:String>Tomáš Záhořík</x:String>
+                            <x:String>Pavel Trnka</x:String>
+                            <x:String>Josef Zelba</x:String>
+                            <x:String>Šárka Žemličková</x:String>
+                            <x:String>Shane Hertnon</x:String>
+                            <x:String>Michal Janko</x:String>
+                            <x:String>Tadeáš Němec</x:String>
+                            <x:String>Michal Macinka</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Button x:Name="AcceptButton" Text="Výběr" Clicked="Button_Clicked"></Button>
+            </StackLayout>
+            <!--<ScrollView Grid.Row="1">
+                <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                    <CollectionView x:Name="TeacherView" Margin="20,0,0,0"
+                                    IsVisible="False"
+                                    Background="Black"
+                                    ItemsSource="{x:Static data:GetTeacher.Teacher}"
+                                    ItemTemplate="{StaticResource Teacher}"/>
+
+
+                </StackLayout>
+            </ScrollView>-->
+        </Grid>
+    </RefreshView>
 </ContentPage>

@@ -1,13 +1,9 @@
 ﻿using Project_K.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using Xamarin.Essentials;
 
 namespace Project_K.Services

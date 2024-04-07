@@ -77,6 +77,67 @@
                     </Frame>
                 </StackLayout>
             </DataTemplate>
+            <DataTemplate x:Key="Teacher">
+                <StackLayout Margin="0,0,0,12">
+                    <Frame Padding="5" Margin="0,0,0,0" HeightRequest="52" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True">
+                        <Frame.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Single">
+                                <On Platform="iOS" Value="12" />
+                                <On Platform="Android" Value="12" />
+                                <On Platform="UWP" Value="12" />
+                            </OnPlatform>
+                        </Frame.CornerRadius>
+                        <Grid>
+                            <Label
+                TextColor="White"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Start"
+                     FontSize="20"
+                     FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                Text="{Binding SubjectName}"
+                FontAttributes="Bold" 
+                Margin="10,0,0,0"/>
+                            <StackLayout HorizontalOptions="End" VerticalOptions="CenterAndExpand">
+                                <Label TextColor="White"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalTextAlignment="Center"
+                    FontSize="20"
+                            FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                    Text="{Binding ClassRoom}"
+                    FontAttributes="Bold" 
+                    IsVisible="true"
+                    Margin="0,0,10,0"/>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                                <Label TextColor="White"
+                    VerticalTextAlignment="Center"
+                    Text="{Binding FormattedStartTime}"
+                    HorizontalOptions="CenterAndExpand"
+                            FontSize="20"
+                    FontAttributes="Bold"
+                    Margin="0,0,0,0"
+                            FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                    IsVisible="true"/>
+                                <Label Text="-"
+                    TextColor="White"
+                            FontSize="20"
+                            FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalTextAlignment="Center"/>
+                                <Label TextColor="White"
+                    HorizontalOptions="CenterAndExpand"
+                         FontSize="20"
+                    VerticalTextAlignment="Center"
+                    Text="{Binding TimeTo}"
+                    FontAttributes="Bold" 
+                            FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                    IsVisible="true"
+                    Margin="0,0,0,0"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
