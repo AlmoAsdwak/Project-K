@@ -49,11 +49,7 @@ namespace Project_K.Views
             Device.BeginInvokeOnMainThread(() =>
             {
                 if (result != null && result.BarcodeFormat == ZXing.BarcodeFormat.QR_CODE)
-                {
-                    // Display QR code content
                     Label.Text = result.Text;
-
-                }
             });
         }
 
