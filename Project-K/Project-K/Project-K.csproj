@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Models\ucitele.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Models\ucitele.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="9.0.0-preview.2.24128.5" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />  

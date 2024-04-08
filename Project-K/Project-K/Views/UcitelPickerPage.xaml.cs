@@ -75,10 +75,15 @@ namespace Project_K.Views
                 bool selection = teachers.TryGetValue(selectedItem, out teacherRealName);
                 if (!selection)
                 {
-                    DisplayAlert("Něco je špatně", $"Něco je špatně", "OK");
+                    DisplayAlert("Něco je špatně", $"Nenašli jsme učitele, prosím kontaktujte vývojáře", "OK");
                     return;
                 }
                 GetTeacher.TeacherRefresh();
+                if(GetTeacher.Teacher==null)
+                {
+                    DisplayAlert("Chyba", $"Učitel dneska neučí", "OK");
+                    return;
+                }
                 PickerOfTeachers.IsVisible = false;
                 AcceptButton.IsVisible = false;
                 label1.IsVisible = false;
