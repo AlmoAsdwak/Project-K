@@ -13,6 +13,9 @@ namespace Project_K.Services
         public static IList<Models.TeacherCell> Teacher { get; private set; }
         static GetTeacher()
         {
+        }
+        public static void TeacherRefresh()
+        {
             var teacher = Views.UcitelPickerPage.teacherRealName;
             if (teacher == null)
                 return;
@@ -22,8 +25,15 @@ namespace Project_K.Services
             var response = client.PostAsync("https://whoisalmo.cz/api/school/kdeucitel",
             new StringContent(dataJson, Encoding.UTF8, "application/json")).Result;
             var responseString = response.Content.ReadAsStringAsync().Result;
-            var dataJson2 = JsonSerializer.Deserialize<TeacherDatas>(responseString);
-            Teacher = dataJson2.Cells.OrderBy(cell => cell.FormattedStartTime).ToList();
+            try
+            {
+                var dataJson2 = JsonSerializer.Deserialize<TeacherDatas>(responseString);
+                Teacher = dataJson2.Cells.OrderBy(cell => cell.FormattedStartTime).ToList();
+            }
+            catch (Exception ex)
+            {
+                Teacher = null;
+            }
         }
     }
 }

@@ -13,8 +13,6 @@ namespace Project_K
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
             var Id = SecureStorage.GetAsync("Id").Result;
             if (Id == null)
             {

@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Project_K.Services;
 
 namespace Project_K.ViewModels
 {
@@ -20,6 +21,7 @@ namespace Project_K.ViewModels
         {
             IsBusy = true;
             App.Current.MainPage = new AppShell();
+            GetRozvrh.RefreshRozvrh();
             IsBusy = false;
         }
         public ICommand OpenWebCommand { get; }

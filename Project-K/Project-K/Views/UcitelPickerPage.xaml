@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project_K.Views.UcitelPickerPage"
              xmlns:data="clr-namespace:Project_K.Services"
@@ -7,13 +6,32 @@
              Title="Kde je učitel">
     <RefreshView>
         <Grid>
-            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
-                <Label Text="Vyber si učitele:"  FontFamily="Khyay-Regular.ttf#Khyay-Regular"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="TeacherName" Text="" FontSize="Title" Padding="0,10,0,0" IsVisible="False"
+                   HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontFamily="Khyay-Regular.ttf#Khyay-Regular" TextColor="White"></Label>
+            <ScrollView Grid.Row="0">
+                <StackLayout Orientation="Vertical" Padding="30,50,30,24" Spacing="10">
+                    <CollectionView x:Name="TeacherView" Margin="20,0,0,0"
+                                    IsVisible="False"
+                                    IsEnabled="False"
+                                    BackgroundColor="Black"
+                                    ItemsSource="{x:Static data:GetTeacher.Teacher}"
+                                    ItemTemplate="{StaticResource Teacher}"/>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Grid.Row="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label x:Name="label1" Text="Vyber si učitele:" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
                 <Picker x:Name="PickerOfTeachers"
                     Title="Vyber si učitele"
-                    TitleColor="White"
-                        TextColor="White">
-                    
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        WidthRequest="200"
+                    TextColor="White"
+                    TitleColor="White">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Jan Lang</x:String>
@@ -42,7 +60,6 @@
                             <x:String>Simona Trnková</x:String>
                             <x:String>Tomáš Záhořík</x:String>
                             <x:String>Pavel Trnka</x:String>
-                            <x:String>Josef Mrdka</x:String>
                             <x:String>Šárka Žemličková</x:String>
                             <x:String>Shane Hertnon</x:String>
                             <x:String>Michal Janko</x:String>
@@ -51,23 +68,10 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
-                <Button x:Name="AcceptButton" Text="Potvrdit" BackgroundColor="Orange" TextColor="White" Clicked="Button_Clicked"
-        FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-        FontSize="Large"
-        CornerRadius="15">
-                </Button>
+                <Button x:Name="AcceptButton" Text="Výběr" Clicked="Button_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+FontSize="Large"
+CornerRadius="15">></Button>
             </StackLayout>
-            <!--<ScrollView Grid.Row="1">
-                <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                    <CollectionView x:Name="TeacherView" Margin="20,0,0,0"
-                                    IsVisible="False"
-                                    Background="Black"
-                                    ItemsSource="{x:Static data:GetTeacher.Teacher}"
-                                    ItemTemplate="{StaticResource Teacher}"/>
-
-
-                </StackLayout>
-            </ScrollView>-->
         </Grid>
-    </RefreshView>
+    </ContentPage.Content>
 </ContentPage>

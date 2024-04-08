@@ -13,7 +13,10 @@ namespace Project_K.Services
         public static IList<Models.Cell> Rozvrh { get; private set; }
         static GetRozvrh()
         {
-            
+            RefreshRozvrh();
+        }
+        public static void RefreshRozvrh()
+        {
             var storage = SecureStorage.GetAsync("Id").Result;
             int id = Convert.ToInt32(storage);
             DateTime date = DateTime.Now;
@@ -29,7 +32,6 @@ namespace Project_K.Services
             var dataJson2 = JsonSerializer.Deserialize<DataJson>(responseString);
             if (dataJson2 == null) return;
             Rozvrh = dataJson2.Cells.OrderBy(cell => cell.StartTime).ToList();
-
         }
     }
 }

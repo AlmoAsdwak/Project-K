@@ -1,21 +1,26 @@
-﻿using System;
+﻿using Project_K.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Project_K.ViewModels
 {
 	public class UcitelViewModel : ContentPage
 	{
-		public UcitelViewModel ()
+        public Command RefreshCommand { get; }
+        public UcitelViewModel()
 		{
-			Content = new StackLayout {
-				Children = {
-					new Label { Text = "Welcome to Xamarin.Forms!" }
-				}
-			};
-		}
-	}
+            RefreshCommand = new Command(async () => await RefreshTeacher());
+        }
+
+        private async Task RefreshTeacher()
+        {
+            IsBusy = true;
+            GetTeacher.TeacherRefresh();
+            IsBusy = false;
+        }
+    }
 }

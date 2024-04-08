@@ -4,30 +4,30 @@ using System.Text;
 
 namespace Project_K.Models
 {
-    public class TeacherDatas
-    {
-        public TeacherCell[] Cells { get; set; }
-    }
-    public class TeacherCell
-    {
-        private DateTime _startTime;
-
-        public string ClassRoom { get; set; }
-        public string SubjectName { get; set; }
-        public string StudyGroupName { get; set; }
-        public string Time
+        public class TeacherDatas
         {
-            get => _startTime.ToString("HH:mm:ss");
-            set
+            public TeacherCell[] Cells { get; set; }
+        }
+        public class TeacherCell
+        {
+            private DateTime _startTime;
+
+            public string ClassRoom { get; set; }
+            public string SubjectName { get; set; }
+            public string StudyGroupName { get; set; }
+            public string Time
             {
-                if (DateTime.TryParse(value, out DateTime startTime))
+                get => _startTime.ToString("HH:mm:ss");
+                set
                 {
-                    _startTime = startTime;
+                    if (DateTime.TryParse(value, out DateTime startTime))
+                    {
+                        _startTime = startTime;
+                    }
                 }
             }
+            public string Teacher { get; set; }
+            public string FormattedStartTime => _startTime.ToString("HH:mm");
+            public string TimeTo => _startTime.AddMinutes(45).ToString("HH:mm");
         }
-        public string Teacher { get; set; }
-        public string FormattedStartTime => _startTime.ToString("HH:mm");
-        public string TimeTo => _startTime.AddMinutes(45).ToString("HH:mm");
-    }
 }
