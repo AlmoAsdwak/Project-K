@@ -26,7 +26,7 @@
     <TabBar>
         <ShellContent Title="Rozvrh" Icon="Rozvrh.png" Route="AboutPage" ContentTemplate="{DataTemplate local:RozvrhPage}" />
         <ShellContent Title="Kde je učitel" Icon="kde_je_ucitel_ikona.png" ContentTemplate="{DataTemplate local:UcitelPickerPage}" />
-        <ShellContent Title="Volné učebny" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:UcebnaFinder}" />
+        <ShellContent Title="Volné učebny" Icon="dvere_final.png" ContentTemplate="{DataTemplate local:UcebnaFinder}" />
         <ShellContent Title="Odhlásit" Icon="Logut.png" ContentTemplate="{DataTemplate local:LoginPage}" />
     </TabBar>
 

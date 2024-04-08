@@ -25,7 +25,6 @@ namespace Project_K.Views
             AcceptButton.IsVisible = true;
             label1.IsVisible = true;
             TeacherView.IsVisible = false;
-            TeacherView.IsEnabled = false;
             TeacherName.Text = null;
             TeacherName.IsVisible = false;
             TeacherView.ItemsSource = null;
@@ -35,7 +34,7 @@ namespace Project_K.Views
             var selectedItem = PickerOfTeachers.SelectedItem as string;
             if (selectedItem != null)
             {
-                
+
                 Dictionary<string, string> teachers = new Dictionary<string, string>
                 {
                     { "Jan Lang", "LA" },
@@ -79,29 +78,20 @@ namespace Project_K.Views
                     return;
                 }
                 string result = GetTeacher.TeacherRefresh();
-                if(result!="good")
+                if (result != "good")
                 {
-                    if(result== "noteacherselected")
-                    {
+                    if (result == "noteacherselected")
                         DisplayAlert("Varování", $"Teacher je null neco se stalo idk wtf pls posli mi to dik<3", "OK");
-                    }
-                    if(result== "ucitelneuci")
-                    {
-                    DisplayAlert("Varování", $"Učitel dneska neučí", "OK");
-
-                    }
+                    if (result == "ucitelneuci")
+                        DisplayAlert("Varování", $"Učitel dneska neučí", "OK");
                     if (result == "nointernet")
-                    {
                         DisplayAlert("Varování", $"Není připojení k internetu", "OK");
-
-                    }
                     return;
                 }
                 PickerOfTeachers.IsVisible = false;
                 AcceptButton.IsVisible = false;
                 label1.IsVisible = false;
                 TeacherView.IsVisible = true;
-                TeacherView.IsEnabled= true;
                 TeacherName.Text = selectedItem;
                 TeacherName.IsVisible = true;
                 TeacherView.ItemsSource = GetTeacher.Teacher;

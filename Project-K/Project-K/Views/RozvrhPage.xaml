@@ -20,8 +20,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <ScrollView Grid.Row="1">
-                <StackLayout Orientation="Vertical" Padding="20,24,30,24" Spacing="10">
-                    <Label Text="{Binding Day}" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="Title"/>
+                <StackLayout Orientation="Vertical"  Padding="20,24,30,24" Spacing="10">
+                    <Label Text="{Binding Day}" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="White" FontSize="Title"/>
                     <CollectionView Margin="12,0,0,0"
                                     x:Name="RozvrhCollectionView"
                                     Background="Black"

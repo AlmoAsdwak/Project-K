@@ -34,7 +34,7 @@ namespace Project_K.Services
                 Teacher = dataJson2.Cells.OrderBy(cell => cell.FormattedStartTime).ToList();
                 return "good";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Teacher = null;
                 return "nointernet";
