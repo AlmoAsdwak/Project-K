@@ -23,6 +23,7 @@ namespace Project_K.ViewModels
             IsBusy = true;
             GetRozvrh.RefreshRozvrh();
             IsBusy = false;
+            await Task.CompletedTask;
         }
         public ICommand OpenWebCommand { get; }
     }
