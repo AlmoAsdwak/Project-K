@@ -21,7 +21,7 @@
             </Grid.RowDefinitions>
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                    <Label Text="{Binding Day}" HorizontalTextAlignment="Center" FontFamily="Khyay-Regular.ttf#Khyay-Regular" TextColor="White" FontSize="Title"/>
+                    <Label Text="{Binding Day}" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="Title"/>
                     <CollectionView Margin="20,0,0,0"
                                     x:Name="RozvrhCollectionView"
                                     Background="Black"

@@ -17,7 +17,7 @@
                 <Button x:Name="HelpButton" Clicked="HelpButton_Clicked" Text="Help" CornerRadius="12" FontFamily="Khyay-Regular.ttf#Khyay-Regular" TextColor="White" BackgroundColor="DarkOrange" FontSize="20">
                     
                 </Button>
-                <Label x:Name="Label" FontFamily="Khyay-Regular.ttf#Khyay-Regular" HorizontalTextAlignment="Center" Text="" TextColor="White" FontSize="18"></Label>
+                <Label x:Name="Label" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="" TextColor="White" FontSize="18"></Label>
                 </StackLayout>
             <StackLayout VerticalOptions="End">
                 <Button VerticalOptions="End" Text="Login" Clicked="Button_Clicked" HeightRequest="75"

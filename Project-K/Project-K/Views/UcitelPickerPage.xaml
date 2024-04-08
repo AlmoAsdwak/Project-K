@@ -11,7 +11,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label x:Name="TeacherName" Text="" FontSize="Title" Padding="0,10,0,0" IsVisible="False"
-                   HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontFamily="Khyay-Regular.ttf#Khyay-Regular" TextColor="White"></Label>
+                   HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White"></Label>
             <ScrollView Grid.Row="0">
                 <StackLayout Orientation="Vertical" Padding="30,50,30,24" Spacing="10">
                     <CollectionView x:Name="TeacherView" Margin="20,0,0,0"
