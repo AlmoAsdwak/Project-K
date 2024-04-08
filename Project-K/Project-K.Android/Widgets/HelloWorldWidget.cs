@@ -4,7 +4,7 @@ using Android.Widget;
 
 namespace Kyberna.Widgets
 {
-    [BroadcastReceiver(Label = "Hello World Widget")]
+    [BroadcastReceiver(Label = "Rozvrh Widget")]
     public class HelloWorldWidget : AppWidgetProvider
     {
         public override void OnUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
