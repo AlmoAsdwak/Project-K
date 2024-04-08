@@ -12,7 +12,7 @@ namespace Project_K.ViewModels
         public Command RefreshRozvrh { get; }
         public RozvrhViewModel()
         {
-            Title = "Rozvrh";
+            Title = "Osobní Rozvrh";
             RefreshRozvrh = new Command(async () => await Call());
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }

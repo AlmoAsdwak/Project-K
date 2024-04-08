@@ -7,11 +7,13 @@
              Title="Kde je učitel">
     <RefreshView>
         <Grid>
-            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                <Label Text="Vyber si učitele:"/>
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label Text="Vyber si učitele:"  FontFamily="Khyay-Regular.ttf#Khyay-Regular"/>
                 <Picker x:Name="PickerOfTeachers"
                     Title="Vyber si učitele"
-                    TitleColor="White">
+                    TitleColor="White"
+                        TextColor="White">
+                    
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Jan Lang</x:String>
@@ -40,7 +42,7 @@
                             <x:String>Simona Trnková</x:String>
                             <x:String>Tomáš Záhořík</x:String>
                             <x:String>Pavel Trnka</x:String>
-                            <x:String>Josef Zelba</x:String>
+                            <x:String>Josef Mrdka</x:String>
                             <x:String>Šárka Žemličková</x:String>
                             <x:String>Shane Hertnon</x:String>
                             <x:String>Michal Janko</x:String>
@@ -49,7 +51,11 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
-                <Button x:Name="AcceptButton" Text="Výběr" Clicked="Button_Clicked"></Button>
+                <Button x:Name="AcceptButton" Text="Potvrdit" BackgroundColor="Orange" TextColor="White" Clicked="Button_Clicked"
+        FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+        FontSize="Large"
+        CornerRadius="15">
+                </Button>
             </StackLayout>
             <!--<ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
