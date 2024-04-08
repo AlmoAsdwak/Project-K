@@ -4,7 +4,7 @@
              xmlns:data="clr-namespace:Project_K.Services"
              BackgroundColor="Black"
              Title="Kde je učitel">
-    <RefreshView>
+    <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -68,9 +68,7 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
-                <Button x:Name="AcceptButton" Text="Výběr" Clicked="Button_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-FontSize="Large"
-CornerRadius="15">></Button>
+                <Button x:Name="AcceptButton" Text="Výběr" BackgroundColor="DarkOrange" Clicked="Button_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" CornerRadius="15"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
