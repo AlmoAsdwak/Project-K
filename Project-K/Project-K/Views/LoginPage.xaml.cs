@@ -20,10 +20,15 @@ namespace Project_K.Views
     {
         public LoginPage()
         {
-            var Id = SecureStorage.GetAsync("Id").Result;
+            InitializeLoginPageAsync();
+        }
+
+        private async Task InitializeLoginPageAsync()
+        {
+            var Id = await SecureStorage.GetAsync("Id");
             if (Id != null)
             {
-                var confirmed = DisplayAlert("Logout Confirmation", "Jste si jisti že se chcete odhlásit?", "Ano", "Ne").Result;
+                var confirmed = await DisplayAlert("Logout Confirmation", "Jste si jisti že se chcete odhlásit?", "Ano", "Ne");
                 if (!confirmed)
                 {
                     App.Current.MainPage = new AppShell();
@@ -37,6 +42,7 @@ namespace Project_K.Views
             this.BindingContext = new LoginViewModel();
             scannerView.OnScanResult += Result;
         }
+
         public void Result(ZXing.Result result)
         {
             Device.BeginInvokeOnMainThread(() =>
