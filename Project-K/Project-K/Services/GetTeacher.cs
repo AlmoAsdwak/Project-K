@@ -13,6 +13,9 @@ namespace Project_K.Services
         public static IList<Models.TeacherCell> Teacher { get; private set; }
         static GetTeacher()
         {
+        }
+        public static void TeacherRefresh()
+        {
             var teacher = Views.UcitelPickerPage.teacherRealName;
             if (teacher == null)
                 return;
