@@ -22,9 +22,6 @@ namespace Project_K.ViewModels
         {
             IsBusy = true;
             GetRozvrh.RefreshRozvrh();
-            App.Current.MainPage = new AppShell();
-            RozvrhPage.RefreshR(GetRozvrh.Rozvrh);
-            
             IsBusy = false;
         }
         public ICommand OpenWebCommand { get; }

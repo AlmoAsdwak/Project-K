@@ -1,16 +1,18 @@
 ﻿using Project_K.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Project_K.Services
 {
     public static class GetRozvrh
     {
-        public static IList<Models.Cell> Rozvrh { get; private set; }
+        public static ObservableCollection<Models.Cell> Rozvrh { get; private set; } = new ObservableCollection<Models.Cell>();
         static GetRozvrh()
         {
             RefreshRozvrh();
@@ -19,6 +21,7 @@ namespace Project_K.Services
         {
             try
             {
+                Rozvrh.Clear();
                 var storage = SecureStorage.GetAsync("Id").Result;
                 int id = Convert.ToInt32(storage);
                 DateTime date = DateTime.Now;
@@ -32,8 +35,15 @@ namespace Project_K.Services
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 var dataJson2 = JsonSerializer.Deserialize<DataJson>(responseString);
                 if (dataJson2 == null) return;
-                Rozvrh = dataJson2.Cells.OrderBy(cell => cell.StartTime).ToList();
-                
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Rozvrh.Clear();
+                    foreach (var cell in dataJson2.Cells.OrderBy(cell => cell.StartTime))
+                    {
+                        Rozvrh.Add(cell);
+                    }
+                });
+
             }
             catch (Exception)
             {
