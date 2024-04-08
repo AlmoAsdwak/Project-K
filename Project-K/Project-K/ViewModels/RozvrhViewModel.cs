@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Project_K.Services;
+using Project_K.Views;
 
 namespace Project_K.ViewModels
 {
@@ -15,13 +16,15 @@ namespace Project_K.ViewModels
         {
             Title = "Osobní Rozvrh";
             RefreshRozvrh = new Command(async () => await Call());
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
+      //      OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
         async Task Call()
         {
             IsBusy = true;
-            App.Current.MainPage = new AppShell();
             GetRozvrh.RefreshRozvrh();
+            App.Current.MainPage = new AppShell();
+            RozvrhPage.RefreshR(GetRozvrh.Rozvrh);
+            
             IsBusy = false;
         }
         public ICommand OpenWebCommand { get; }

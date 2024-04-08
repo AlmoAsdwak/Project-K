@@ -14,25 +14,30 @@ namespace Project_K.Services
         static GetTeacher()
         {
         }
-        public static void TeacherRefresh()
+        public static string TeacherRefresh()
         {
-            var teacher = Views.UcitelPickerPage.teacherRealName;
-            if (teacher == null)
-                return;
-            HttpClient client = new HttpClient();
-            var data = new { Teacher = teacher };
-            var dataJson = JsonSerializer.Serialize(data);
-            var response = client.PostAsync("https://whoisalmo.cz/api/school/kdeucitel",
-            new StringContent(dataJson, Encoding.UTF8, "application/json")).Result;
-            var responseString = response.Content.ReadAsStringAsync().Result;
+
             try
             {
+                var teacher = Views.UcitelPickerPage.teacherRealName;
+                if (teacher == null)
+                    return "noteacherselected";
+                HttpClient client = new HttpClient();
+                var data = new { Teacher = teacher };
+                var dataJson = JsonSerializer.Serialize(data);
+                var response = client.PostAsync("https://whoisalmo.cz/api/school/kdeucitel",
+                new StringContent(dataJson, Encoding.UTF8, "application/json")).Result;
+                var responseString = response.Content.ReadAsStringAsync().Result;
+                if (responseString == "{\"Cells\":]}")
+                    return "ucitelneuci";
                 var dataJson2 = JsonSerializer.Deserialize<TeacherDatas>(responseString);
                 Teacher = dataJson2.Cells.OrderBy(cell => cell.FormattedStartTime).ToList();
+                return "good";
             }
             catch (Exception ex)
             {
                 Teacher = null;
+                return "nointernet";
             }
         }
     }

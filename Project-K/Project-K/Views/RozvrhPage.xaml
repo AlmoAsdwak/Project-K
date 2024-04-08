@@ -13,7 +13,7 @@
         <vm:RozvrhViewModel />
     </ContentPage.BindingContext>
 
-    <RefreshView Command="{Binding RefreshRozvrh}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+    <RefreshView x:Name="RozvrhRefresh" Command="{Binding RefreshRozvrh}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0" />
@@ -23,6 +23,7 @@
                 <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
                     <Label Text="{Binding Day}" HorizontalTextAlignment="Center" FontFamily="Khyay-Regular.ttf#Khyay-Regular" TextColor="White" FontSize="Title"/>
                     <CollectionView Margin="20,0,0,0"
+                                    x:Name="RozvrhCollectionView"
                                     Background="Black"
                                     ItemsSource="{x:Static data:GetRozvrh.Rozvrh}"
                                     ItemTemplate="{StaticResource Rozvrh}"/>

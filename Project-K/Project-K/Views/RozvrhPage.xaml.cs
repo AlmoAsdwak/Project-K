@@ -12,5 +12,9 @@ namespace Project_K.Views
         {
             InitializeComponent();
         }
+        public void RefreshR(System.Collections.Generic.IList<Models.Cell> rozvrh)
+        {
+            RozvrhCollectionView.ItemsSource = rozvrh;
+        }
     }
 }

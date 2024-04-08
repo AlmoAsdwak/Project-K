@@ -78,10 +78,23 @@ namespace Project_K.Views
                     DisplayAlert("Něco je špatně", $"Nenašli jsme učitele, prosím kontaktujte vývojáře", "OK");
                     return;
                 }
-                GetTeacher.TeacherRefresh();
-                if(GetTeacher.Teacher==null)
+                string result = GetTeacher.TeacherRefresh();
+                if(result!="good")
                 {
-                    DisplayAlert("Chyba", $"Učitel dneska neučí", "OK");
+                    if(result== "noteacherselected")
+                    {
+                        DisplayAlert("Varování", $"Teacher je null neco se stalo idk wtf pls posli mi to dik<3", "OK");
+                    }
+                    if(result== "ucitelneuci")
+                    {
+                    DisplayAlert("Varování", $"Učitel dneska neučí", "OK");
+
+                    }
+                    if (result == "nointernet")
+                    {
+                        DisplayAlert("Varování", $"Není připojení k internetu", "OK");
+
+                    }
                     return;
                 }
                 PickerOfTeachers.IsVisible = false;
