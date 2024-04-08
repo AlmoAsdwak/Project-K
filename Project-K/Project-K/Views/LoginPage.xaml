@@ -21,7 +21,7 @@
                 </StackLayout>
             <StackLayout VerticalOptions="End">
                 <Button VerticalOptions="End" Text="Login" Clicked="Button_Clicked" HeightRequest="75"
-                     BackgroundColor="#E28C09"
+                     BackgroundColor="DarkOrange"
                      TextColor="White"
                      FontSize="20"
                      CornerRadius="20"
