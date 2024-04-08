@@ -14,7 +14,7 @@
                 <StackLayout Orientation="Vertical" Padding="30,30,30,24" Spacing="10">
             <Label x:Name="TeacherName" Text="" FontSize="Title" IsVisible="False"
                    HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White"></Label>
-                    <CollectionView x:Name="TeacherView" Margin="20,0,0,0"
+                    <CollectionView x:Name="TeacherView" Margin="12,0,0,0"
                                     IsVisible="False"
                                     IsEnabled="False"
                                     BackgroundColor="Black"
