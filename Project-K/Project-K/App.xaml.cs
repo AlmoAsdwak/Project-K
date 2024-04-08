@@ -9,7 +9,7 @@ namespace Project_K
 {
     public partial class App : Application
     {
-
+        public const string version = "1.0.0";
         public App()
         {
             InitializeComponent();

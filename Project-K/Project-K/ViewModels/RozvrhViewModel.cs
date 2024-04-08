@@ -6,6 +6,8 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Project_K.Services;
 using Project_K.Views;
+using System.Net.Cache;
+using System.Net.Http;
 
 namespace Project_K.ViewModels
 {
@@ -16,7 +18,6 @@ namespace Project_K.ViewModels
         {
             Title = "Osobní Rozvrh";
             RefreshRozvrh = new Command(async () => await Call());
-      //      OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
         async Task Call()
         {

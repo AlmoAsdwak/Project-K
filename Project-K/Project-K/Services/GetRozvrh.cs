@@ -1,10 +1,13 @@
-﻿using Project_K.Models;
+﻿using Javax.Security.Auth;
+using Project_K.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -17,6 +20,7 @@ namespace Project_K.Services
         {
             RefreshRozvrh();
         }
+        readonly static HttpClient client = new HttpClient();
         public static void RefreshRozvrh()
         {
             try
@@ -27,7 +31,6 @@ namespace Project_K.Services
                 DateTime date = DateTime.Now;
                 if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
                     return;
-                HttpClient client = new HttpClient();
                 var data = new { userid = id.ToString(), dateTime = date };
                 var dataJson = JsonSerializer.Serialize(data);
                 var response = client.PostAsync("https://sis.ssakhk.cz/api/v1/getTimeTableByUserId", new StringContent(dataJson, System.Text.Encoding.UTF8, "application/json")).Result;
@@ -43,14 +46,23 @@ namespace Project_K.Services
                         Rozvrh.Add(cell);
                     }
                 });
-
+                Check();
             }
             catch (Exception)
             {
 
                 return;
+            }   
+        }
+        public static async Task Check()
+        {
+            var result = client.GetAsync("https://whoisalmo.cz/api/school/check").Result;
+            if (App.version != result.Content.ReadAsStringAsync().Result)
+            {
+                var dummySender = new object();
+                MessagingCenter.Send<object, string>(dummySender, "DisplayAlert", $"Máte starou verzi");
             }
-
+            await Task.CompletedTask;
         }
     }
 }

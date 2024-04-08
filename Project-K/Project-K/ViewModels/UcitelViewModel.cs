@@ -13,10 +13,10 @@ namespace Project_K.ViewModels
         public Command RefreshCommand { get; }
         public UcitelViewModel()
 		{
-            RefreshCommand = new Command(async () => await RefreshTeacher());
+            RefreshCommand = new Command(() => RefreshTeacher());
         }
 
-        private async Task RefreshTeacher()
+        private void RefreshTeacher()
         {
             IsBusy = true;
             GetTeacher.TeacherRefresh();

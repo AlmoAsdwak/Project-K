@@ -38,7 +38,7 @@ namespace Project_K.Services
                 Classes = dataJson2.ToList();
                 return "good";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Classes = null;
                 return "nointernet";
