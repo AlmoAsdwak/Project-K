@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace Project_K.Services
 {
@@ -46,6 +47,7 @@ namespace Project_K.Services
                     }
                 });
                 Check();
+                
             }
             catch (Exception)
             {

@@ -19,12 +19,13 @@
             android:layout_marginRight="12px"
             android:layout_gravity="center">
             <TextView
-                android:text="TEK"
+                android:text=""
                 android:textSize="30px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:id="@+id/Subject"
                 android:textColor="@android:color/white" />
             <TextView
                 android:text="7:00"
@@ -33,7 +34,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@android:color/white"
-                android:id="@+id/textView1" />
+                android:id="@+id/StartTime" />
             <TextView
                 android:text="21:00"
                 android:textSize="30px"
@@ -42,7 +43,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@android:color/white"
-                android:id="@+id/textView2" />
+                android:id="@+id/EndTime" />
         </LinearLayout>
         <TextView
             android:layout_width="2dp"
@@ -56,7 +57,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@android:color/white"
-            android:id="@+id/textView3" />
+            android:id="@+id/Classroom" />
     </LinearLayout>
 
 </RelativeLayout>
