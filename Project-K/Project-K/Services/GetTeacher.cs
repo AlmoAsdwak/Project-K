@@ -1,6 +1,7 @@
 ﻿using Project_K.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -32,6 +33,7 @@ namespace Project_K.Services
                     return "ucitelneuci";
                 var dataJson2 = JsonSerializer.Deserialize<TeacherDatas>(responseString);
                 Teacher = dataJson2.Cells.OrderBy(cell => cell.FormattedStartTime).ToList();
+
                 return "good";
             }
             catch (Exception)

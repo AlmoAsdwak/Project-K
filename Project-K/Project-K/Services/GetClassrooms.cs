@@ -1,6 +1,7 @@
 ﻿using Project_K.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -19,6 +20,7 @@ namespace Project_K.Services
         {
             try
             {
+
                 var fromtime = Views.UcebnaFinder.from;
                 var totime = Views.UcebnaFinder.to;
                 if (fromtime == null || totime == null)
