@@ -1,11 +1,62 @@
 ﻿<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/widget_textview"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
-</RelativeLayout>
+        android:orientation="horizontal"
+        android:background="@drawable/round_corner_background"
+        android:padding="10dp"
+        android:layout_centerInParent="true">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="12px"
+            android:layout_gravity="center">
+            <TextView
+                android:text="TEK"
+                android:textSize="30px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@android:color/white" />
+            <TextView
+                android:text="7:00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:id="@+id/textView1" />
+            <TextView
+                android:text="21:00"
+                android:textSize="30px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:id="@+id/textView2" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"/>
+        <TextView
+            android:text="2\n1\n5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:id="@+id/textView3" />
+    </LinearLayout>
 
+</RelativeLayout>
