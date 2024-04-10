@@ -30,7 +30,7 @@ namespace Project_K.Views
             if (!AcceptButton.IsVisible)
                 ResetView();
             else
-                Shell.Current.GoToAsync("//RozvrhPage").RunSynchronously();
+                Shell.Current.GoToAsync("//RozvrhPage").Wait();
             return true;
         }
         private void ResetView()
