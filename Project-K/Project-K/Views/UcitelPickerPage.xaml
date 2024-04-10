@@ -67,7 +67,7 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
-                <Button x:Name="AcceptButton" Text="Výběr" BackgroundColor="DarkOrange" Clicked="Button_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" CornerRadius="15"/>
+                <Button x:Name="AcceptButton" TextColor="White" Text="Výběr" BackgroundColor="DarkOrange" Clicked="Button_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" CornerRadius="15"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

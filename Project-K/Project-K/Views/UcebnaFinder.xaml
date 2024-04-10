@@ -28,7 +28,7 @@
                     <Label x:Name="label2" FontSize="25" TextColor="White" Text="-" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
                     <TimePicker HorizontalOptions="CenterAndExpand" FontSize="25" x:Name="endTimePicker" Time="21:00" Format="HH:mm" PropertyChanged="endOnTimePickerPropertyChanged" BackgroundColor="Black" TextColor="DarkOrange"/>
                 </StackLayout>
-                <Button x:Name="AcceptButton" Text="Výběr" BackgroundColor="DarkOrange" Clicked="AcceptButton_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" CornerRadius="15"></Button>
+                <Button x:Name="AcceptButton" Text="Výběr" TextColor="White" BackgroundColor="DarkOrange" Clicked="AcceptButton_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" CornerRadius="15"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

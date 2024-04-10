@@ -24,17 +24,14 @@
     </Shell.Resources>
     
     <TabBar>
-        <ShellContent Title="Rozvrh" Icon="Rozvrh.png" Route="AboutPage" ContentTemplate="{DataTemplate local:RozvrhPage}" />
-        <ShellContent Title="Kde je učitel" Icon="kde_je_ucitel_ikona.png" ContentTemplate="{DataTemplate local:UcitelPickerPage}" />
-        <ShellContent Title="Volné učebny" Icon="dvere_final.png" ContentTemplate="{DataTemplate local:UcebnaFinder}" />
-        <ShellContent Title="Odhlásit" Icon="Logut.png" ContentTemplate="{DataTemplate local:LoginPage}" />
+        <ShellContent Title="Rozvrh" Route="RozvrhPage" Icon="Rozvrh.png" ContentTemplate="{DataTemplate local:RozvrhPage}" />
+        <ShellContent Title="Kde je učitel" Route="UcitelPage" Icon="kde_je_ucitel_ikona.png" ContentTemplate="{DataTemplate local:UcitelPickerPage}" />
+        <ShellContent Title="Volné učebny" Route="UcebnaPage" Icon="dvere_final.png" ContentTemplate="{DataTemplate local:UcebnaFinder}" />
+        <ShellContent Title="Odhlásit" Route="LoginPage" Icon="Logut.png" ContentTemplate="{DataTemplate local:LoginPage}" />
     </TabBar>
 
     <!--
         If you would like to navigate to this content you can do so by calling
         await Shell.Current.GoToAsync("//LoginPage");
     -->
-    <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
-    </TabBar>
 </Shell>

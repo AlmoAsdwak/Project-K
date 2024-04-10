@@ -26,6 +26,5 @@ namespace Project_K.ViewModels
             IsBusy = false;
             await Task.CompletedTask;
         }
-        public ICommand OpenWebCommand { get; }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +18,20 @@ namespace Project_K.Views
         public static TimeSpan to;
         public UcebnaFinder()
         {
-            this.Appearing += OnPageAppearing;
+            Appearing += OnPageAppearing;
             InitializeComponent();
         }
         private void OnPageAppearing(object sender, EventArgs e)
         {
             ResetView();
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            if (!AcceptButton.IsVisible)
+                ResetView();
+            else
+                Shell.Current.GoToAsync("//RozvrhPage").RunSynchronously();
+            return true;
         }
         private void ResetView()
         {

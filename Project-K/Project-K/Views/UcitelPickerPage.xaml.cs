@@ -12,13 +12,18 @@ namespace Project_K.Views
         public static string teacherRealName;
         public UcitelPickerPage()
         {
-            this.Appearing += OnPageAppearing;
+            Appearing += OnPageAppearing;
             InitializeComponent();
         }
-        private void OnPageAppearing(object sender, EventArgs e)
+        protected override bool OnBackButtonPressed()
         {
-            ResetView();
+            if (!AcceptButton.IsVisible)
+                ResetView();
+            else
+                Shell.Current.GoToAsync("//RozvrhPage").Wait();
+            return true;
         }
+        private void OnPageAppearing(object sender, EventArgs e) => ResetView();
         private void ResetView()
         {
             PickerOfTeachers.IsVisible = true;
