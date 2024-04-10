@@ -1,11 +1,6 @@
 ﻿using Project_K.Services;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,10 +16,7 @@ namespace Project_K.Views
             Appearing += OnPageAppearing;
             InitializeComponent();
         }
-        private void OnPageAppearing(object sender, EventArgs e)
-        {
-            ResetView();
-        }
+        private void OnPageAppearing(object sender, EventArgs e) => ResetView();
         protected override bool OnBackButtonPressed()
         {
             if (!AcceptButton.IsVisible)
@@ -72,10 +64,7 @@ namespace Project_K.Views
                 var timePicker = sender as TimePicker;
                 var time = timePicker.Time;
                 if (time.Hours < 7 || time.Hours > 21)
-                {
-                    // Reset the time to the start of your range
                     timePicker.Time = new TimeSpan(7, 0, 0);
-                }
             }
         }
         void endOnTimePickerPropertyChanged(object sender, PropertyChangedEventArgs args)
@@ -85,15 +74,9 @@ namespace Project_K.Views
                 var timePicker = sender as TimePicker;
                 var time = timePicker.Time;
                 if (time.Hours < 7 || time.Hours > 21)
-                {
-                    // Reset the time to the start of your range
                     timePicker.Time = new TimeSpan(7, 0, 0);
-                }
             }
         }
-        private void startTimePicker_Unfocused(object sender, FocusEventArgs e)
-        {
-            endTimePicker.Focus();
-        }
+        private void startTimePicker_Unfocused(object sender, FocusEventArgs e) => endTimePicker.Focus();
     }
 }

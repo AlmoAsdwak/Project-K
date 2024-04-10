@@ -1,7 +1,6 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project_K.Views.UcitelPickerPage"
-             xmlns:data="clr-namespace:Project_K.Services"
              BackgroundColor="Black"
              Title="Kde je učitel">
     <ContentPage.Content>
@@ -12,24 +11,13 @@
             </Grid.RowDefinitions>
             <ScrollView Grid.Row="0">
                 <StackLayout Orientation="Vertical" Padding="30,30,30,24" Spacing="10">
-            <Label x:Name="TeacherName" Text="" FontSize="Title" IsVisible="False"
-                   HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White"></Label>
-                    <CollectionView x:Name="TeacherView" Margin="5,0,0,0"
-                                    IsVisible="False"
-                                    BackgroundColor="Black"
-                                    ItemTemplate="{StaticResource Teacher}"/>
+                    <Label x:Name="TeacherName" Text="" FontSize="Title" IsVisible="False" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White"></Label>
+                    <CollectionView x:Name="TeacherView" Margin="5,0,0,0" IsVisible="False" BackgroundColor="Black" ItemTemplate="{StaticResource Teacher}"/>
                 </StackLayout>
             </ScrollView>
             <StackLayout Grid.Row="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                 <Label x:Name="label1" Text="Vyber si učitele:" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
-                <Picker x:Name="PickerOfTeachers"
-                    Title="Vyber si učitele"
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand"
-                        HorizontalTextAlignment="Center"
-                        WidthRequest="200"
-                    TextColor="White"
-                    TitleColor="White">
+                <Picker x:Name="PickerOfTeachers" Title="Vyber si učitele" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" WidthRequest="200" TextColor="White" TitleColor="White">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Jan Lang</x:String>

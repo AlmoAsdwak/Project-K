@@ -10,25 +10,13 @@
     <RefreshView>
         <Grid>
             <StackLayout VerticalOptions="Start">
-                    <zxing:ZXingScannerView x:Name="scannerView"
-                                        WidthRequest="300"
-                                        HeightRequest="300"
-                                        IsScanning="True"/>
-                <Button x:Name="HelpButton" Clicked="HelpButton_Clicked" Text="Help" CornerRadius="12" FontFamily="Khyay-Regular.ttf#Khyay-Regular" TextColor="White" BackgroundColor="DarkOrange" FontSize="20">
-                    
-                </Button>
+                <zxing:ZXingScannerView x:Name="scannerView" WidthRequest="300" HeightRequest="300" IsScanning="True"/>
+                <Button x:Name="HelpButton" Clicked="HelpButton_Clicked" Text="Help" CornerRadius="12" FontFamily="Khyay-Regular.ttf#Khyay-Regular" TextColor="White" BackgroundColor="DarkOrange" FontSize="20"/>
                 <Label x:Name="Label" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="" TextColor="White" FontSize="18"></Label>
-                </StackLayout>
+            </StackLayout>
             <StackLayout VerticalOptions="End">
-                <Button VerticalOptions="End" Text="Login" Clicked="Button_Clicked" HeightRequest="75"
-                     BackgroundColor="DarkOrange"
-                     TextColor="White"
-                     FontSize="20"
-                     CornerRadius="20"
-                     FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                     FontAttributes="Bold"/>
-                </StackLayout>
+                <Button VerticalOptions="End" Text="Login" Clicked="Button_Clicked" HeightRequest="75" BackgroundColor="DarkOrange"  TextColor="White"   FontSize="20" CornerRadius="20" FontFamily="Khyay-Regular.ttf#Khyay-Regular" FontAttributes="Bold"/>
+            </StackLayout>
         </Grid>
-
     </RefreshView>
 </ContentPage>

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Project_K.Models
 {
@@ -22,9 +20,7 @@ namespace Project_K.Models
             set
             {
                 if (DateTime.TryParse(value, out DateTime startTime))
-                {
                     _startTime = startTime;
-                }
             }
         }
         public string FormattedStartTime => _startTime.ToString("HH:mm");

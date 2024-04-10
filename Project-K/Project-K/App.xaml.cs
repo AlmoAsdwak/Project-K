@@ -1,9 +1,6 @@
-﻿using Project_K.Services;
-using Project_K.Views;
-using System;
+﻿using Project_K.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Project_K
 {
@@ -15,25 +12,20 @@ namespace Project_K
             InitializeComponent();
             var Id = SecureStorage.GetAsync("Id").Result;
             if (Id == null)
-            {
                 MainPage = new LoginPage();
-            }
             else
-            {
                 MainPage = new AppShell();
-            }
         }
+        //protected override void OnStart()
+        //{
+        //}
 
-        protected override void OnStart()
-        {
-        }
+        //protected override void OnSleep()
+        //{
+        //}
 
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
-        }
+        //protected override void OnResume()
+        //{
+        //}
     }
 }

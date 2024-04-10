@@ -1,7 +1,6 @@
 ﻿using Project_K.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -11,13 +10,9 @@ namespace Project_K.Services
 {
     public static class GetTeacher
     {
-        public static IList<Models.TeacherCell> Teacher { get; private set; }
-        static GetTeacher()
-        {
-        }
+        public static IList<TeacherCell> Teacher { get; private set; }
         public static string TeacherRefresh()
         {
-
             try
             {
                 var teacher = Views.UcitelPickerPage.teacherRealName;

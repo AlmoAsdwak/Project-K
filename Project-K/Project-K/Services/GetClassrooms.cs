@@ -1,7 +1,5 @@
-﻿using Project_K.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -12,15 +10,10 @@ namespace Project_K.Services
     public static class GetClassrooms
     {
         public static IList<string> Classes { get; private set; }
-        static GetClassrooms()
-        {
-
-        }
         public static string ClassroomsRefresh()
         {
             try
             {
-
                 var fromtime = Views.UcebnaFinder.from;
                 var totime = Views.UcebnaFinder.to;
                 if (fromtime == null || totime == null)

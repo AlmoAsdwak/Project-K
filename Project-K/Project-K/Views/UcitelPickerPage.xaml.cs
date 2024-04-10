@@ -39,7 +39,6 @@ namespace Project_K.Views
             var selectedItem = PickerOfTeachers.SelectedItem as string;
             if (selectedItem != null)
             {
-
                 Dictionary<string, string> teachers = new Dictionary<string, string>
                 {
                     { "Jan Lang", "LA" },
@@ -93,13 +92,13 @@ namespace Project_K.Views
                         DisplayAlert("Varování", $"Není připojení k internetu", "OK");
                     return;
                 }
+                TeacherView.ItemsSource = GetTeacher.Teacher;
                 PickerOfTeachers.IsVisible = false;
                 AcceptButton.IsVisible = false;
                 label1.IsVisible = false;
                 TeacherView.IsVisible = true;
                 TeacherName.Text = selectedItem;
                 TeacherName.IsVisible = true;
-                TeacherView.ItemsSource = GetTeacher.Teacher;
             }
         }
     }

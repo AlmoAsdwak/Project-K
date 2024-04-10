@@ -1,27 +1,20 @@
 ﻿using Project_K.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
 
 namespace Project_K.Services
 {
     public static class GetRozvrh
     {
         public static ObservableCollection<Models.Cell> Rozvrh { get; private set; } = new ObservableCollection<Models.Cell>();
-        static GetRozvrh()
-        {
-            RefreshRozvrh();
-        }
         readonly static HttpClient client = new HttpClient();
+        static GetRozvrh() => RefreshRozvrh();
         public static void RefreshRozvrh()
         {
             try
@@ -43,18 +36,15 @@ namespace Project_K.Services
                 {
                     Rozvrh.Clear();
                     foreach (var cell in dataJson2.Cells.OrderBy(cell => cell.StartTime))
-                    {
                         Rozvrh.Add(cell);
-                    }
                 });
                 Check();
-                
+
             }
             catch (Exception)
             {
-
                 return;
-            }   
+            }
         }
         public static async Task Check()
         {

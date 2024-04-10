@@ -1,17 +1,9 @@
-﻿using Project_K.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ZXing.Net.Mobile.Forms;
 
 namespace Project_K.Views
 {
@@ -31,31 +23,24 @@ namespace Project_K.Views
                 var confirmed = await DisplayAlert("Logout Confirmation", "Jste si jisti že se chcete odhlásit?", "Ano", "Ne");
                 if (!confirmed)
                 {
-                    App.Current.MainPage = new AppShell();
+                    Application.Current.MainPage = new AppShell();
                     return;
                 }
             }
-
             SecureStorage.RemoveAll();
             Shell.SetTabBarIsVisible(this, false);
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
             scannerView.OnScanResult += Result;
         }
 
-        public void Result(ZXing.Result result)
-        {
+        public void Result(ZXing.Result result) =>
             Device.BeginInvokeOnMainThread(() =>
             {
                 if (result != null && result.BarcodeFormat == ZXing.BarcodeFormat.QR_CODE)
                     Label.Text = result.Text;
             });
-        }
 
-        private void HelpButton_Clicked(object sender, EventArgs e)
-        {
-            Label.Text = "Musíš jít do školního informačního systému, do svého profilu, úplně dolů. Kde načteš svůj QR kód.";
-        }
+        private void HelpButton_Clicked(object sender, EventArgs e) => Label.Text = "Musíš jít do školního informačního systému, do svého profilu, úplně dolů. Kde načteš svůj QR kód.";
 
         private void Button_Clicked(object sender, EventArgs e)
         {
@@ -85,7 +70,7 @@ namespace Project_K.Views
                 return;
             }
 
-            App.Current.MainPage = new AppShell();
+            Application.Current.MainPage = new AppShell();
         }
     }
 

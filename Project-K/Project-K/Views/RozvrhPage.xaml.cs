@@ -1,9 +1,6 @@
-﻿using Project_K.ViewModels;
+﻿using Project_K.Services;
 using System;
-using System.ComponentModel;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Project_K.Views
 {
@@ -16,12 +13,32 @@ namespace Project_K.Views
                 await DisplayAlert("Varování", arg, "OK");
             });
             InitializeComponent();
+            Day.Text = GetDate();
+            RozvrhRefresh.Command = new Command(() =>
+            {
+                GetRozvrh.RefreshRozvrh();
+                RozvrhRefresh.IsRefreshing = false;
+            });
         }
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<object, string>(this, "DisplayAlert");
         }
-
+        private string GetDate()
+        {
+            DayOfWeek now = DateTime.Now.DayOfWeek;
+            switch (now)
+            {
+                case DayOfWeek.Monday: return "Pondělí";
+                case DayOfWeek.Tuesday: return "Úterý";
+                case DayOfWeek.Wednesday: return "Středa";
+                case DayOfWeek.Thursday: return "Čtvrtek";
+                case DayOfWeek.Friday: return "Pátek";
+                case DayOfWeek.Saturday: return "Sobota\nNení rozvrh";
+                case DayOfWeek.Sunday: return "Neděle\nNení rozvrh";
+                default: return string.Empty;
+            }
+        }
     }
 }
