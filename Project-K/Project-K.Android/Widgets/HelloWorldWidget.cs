@@ -16,6 +16,9 @@ namespace Kyberna.Widgets
         private RemoteViews BuildRemoteViews(Context context)
         {
             var views = new RemoteViews(context.PackageName, Resource.Layout.widget);
+
+
+
             views.SetTextViewText(Resource.Id.Subject,"test");
             return views;
         }
