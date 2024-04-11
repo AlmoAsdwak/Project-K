@@ -13,6 +13,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            <Grid WidthRequest="50" HeightRequest="50" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                <ActivityIndicator x:Name="loadingIndicator" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            </Grid>
             <ScrollView Grid.Row="0">
                 <StackLayout Orientation="Vertical" Padding="30,30,30,24" Spacing="10">
                     <Label x:Name="TeacherName" Text="" FontSize="Title" IsVisible="False" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White"></Label>
@@ -61,7 +64,6 @@
                 </Picker>
                 <Button x:Name="AcceptButton" TextColor="White" Text="Výběr" BackgroundColor="DarkOrange" Clicked="Button_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" CornerRadius="15"/>
             </StackLayout>
-            <ActivityIndicator x:Name="loadingIndicator" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" Color="White" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
