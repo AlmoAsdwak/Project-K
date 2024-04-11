@@ -1,5 +1,6 @@
 ﻿using Project_K.Services;
 using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Project_K.Views
@@ -10,7 +11,11 @@ namespace Project_K.Views
         {
             MessagingCenter.Subscribe<object, string>(this, "DisplayAlert", async (sender, arg) =>
             {
-                await DisplayAlert("Varování", arg, "OK");
+                var result = await DisplayAlert("Varování", arg, "Ano","Ne");
+                if (result)
+                {
+                    await Browser.OpenAsync("https://whoisalmo.cz/RozvrhAPP",BrowserLaunchMode.SystemPreferred);
+                }
             });
             InitializeComponent();
             Day.Text = GetDate();

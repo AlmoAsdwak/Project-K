@@ -52,7 +52,7 @@ namespace Project_K.Services
             if (App.version != result.Content.ReadAsStringAsync().Result)
             {
                 var dummySender = new object();
-                MessagingCenter.Send<object, string>(dummySender, "DisplayAlert", $"Máte starou verzi");
+                MessagingCenter.Send<object, string>(dummySender, "DisplayAlert", $"Máte starou verzi, chcete aktualizovat?");
             }
             await Task.CompletedTask;
         }
