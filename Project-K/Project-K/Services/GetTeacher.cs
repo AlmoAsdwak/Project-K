@@ -24,10 +24,10 @@ namespace Project_K.Services
                 var response = client.PostAsync("https://whoisalmo.cz/api/school/kdeucitel",
                 new StringContent(dataJson, Encoding.UTF8, "application/json")).Result;
                 var responseString = response.Content.ReadAsStringAsync().Result;
-                if (responseString == "{\"Cells\":]}")
+                if (responseString == "[]")
                     return "ucitelneuci";
-                var dataJson2 = JsonSerializer.Deserialize<TeacherDatas>(responseString);
-                Teacher = dataJson2.Cells.OrderBy(cell => cell.FormattedStartTime).ToList();
+                var dataJson2 = JsonSerializer.Deserialize<TeacherCell[]>(responseString,new JsonSerializerOptions() { PropertyNameCaseInsensitive=true});
+                Teacher = dataJson2.OrderBy(cell => cell.FormattedStartTime).ToList();
 
                 return "good";
             }

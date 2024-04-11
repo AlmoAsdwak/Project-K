@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace Project_K.Models
 {
@@ -9,8 +10,9 @@ namespace Project_K.Models
     public class TeacherCell
     {
         private DateTime _startTime;
-
+        //[JsonPropertyName("classRoom")]
         public string ClassRoom { get; set; }
+        //[JsonPropertyName("subjectName")]
         public string SubjectName { get; set; }
         public string StudyGroupName { get; set; }
         public string Time
