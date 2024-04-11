@@ -2,31 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Volné učebny"
+             xmlns:vm="clr-namespace:Kyberna_k.ViewModel"
              xmlns:data="clr-namespace:Project_K.Services"
              Background="Black"
              x:Class="Project_K.Views.UcebnaFinder">
+    <ContentPage.BindingContext>
+        <vm:ViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.Content>
         <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <ScrollView Grid.Row="0">
-                    <StackLayout Orientation="Vertical" Padding="30,30,30,24" Spacing="10">
-                        <CollectionView x:Name="ClassesView" Margin="5,0,0,0" IsVisible="False" BackgroundColor="Black" ItemTemplate="{StaticResource Ucebna}" ItemsSource="{x:Static data:GetClassrooms.Classes}"/>
-                    </StackLayout>
-                </ScrollView>
-                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                    <Label x:Name="label1" TextColor="White" Text="Vyber si čas kde chceš vyhledat volnou učebnu:" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
-                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
-                        <TimePicker x:Name="startTimePicker"  FontSize="25" HorizontalOptions="CenterAndExpand" Time="7:00"  Format="HH:mm" Unfocused="startTimePicker_Unfocused" PropertyChanged="startOnTimePickerPropertyChanged" BackgroundColor="Black" TextColor="DarkOrange"/>
-                        <Label x:Name="label2" FontSize="25" TextColor="White" Text="-" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
-                        <TimePicker HorizontalOptions="CenterAndExpand" FontSize="25" x:Name="endTimePicker" Time="21:00" Format="HH:mm" PropertyChanged="endOnTimePickerPropertyChanged" BackgroundColor="Black" TextColor="DarkOrange"/>
-                    </StackLayout>
-                    <Button x:Name="AcceptButton" Text="Výběr" TextColor="White" BackgroundColor="DarkOrange" Clicked="AcceptButton_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" CornerRadius="15"></Button>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0">
+                <StackLayout Orientation="Vertical" Padding="30,30,30,24" Spacing="10">
+                    <Label x:Name="MainLabel" Text="Volné učebny:" FontSize="Title" IsVisible="False" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White"/>
+                    <CollectionView x:Name="ClassesView" Margin="5,0,0,0" IsVisible="False" BackgroundColor="Black" ItemTemplate="{StaticResource Ucebna}" ItemsSource="{x:Static data:GetClassrooms.Classes}"/>
                 </StackLayout>
-            <ActivityIndicator x:Name="loadingIndicator" IsRunning="False" IsVisible="False" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" Color="White" />
+            </ScrollView>
+            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label x:Name="label1" TextColor="White" Text="Vyber si čas kde chceš vyhledat volnou učebnu:" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+                    <TimePicker x:Name="startTimePicker"  FontSize="25" HorizontalOptions="CenterAndExpand" Time="7:00"  Format="HH:mm" Unfocused="startTimePicker_Unfocused" PropertyChanged="startOnTimePickerPropertyChanged" BackgroundColor="Black" TextColor="DarkOrange"/>
+                    <Label x:Name="label2" FontSize="25" TextColor="White" Text="-" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                    <TimePicker HorizontalOptions="CenterAndExpand" FontSize="25" x:Name="endTimePicker" Time="21:00" Format="HH:mm" PropertyChanged="endOnTimePickerPropertyChanged" BackgroundColor="Black" TextColor="DarkOrange"/>
+                </StackLayout>
+                <Button x:Name="AcceptButton" Text="Výběr" TextColor="White" BackgroundColor="DarkOrange" Clicked="AcceptButton_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" CornerRadius="15"></Button>
+            </StackLayout>
+            <ActivityIndicator x:Name="loadingIndicator" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" Color="White" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

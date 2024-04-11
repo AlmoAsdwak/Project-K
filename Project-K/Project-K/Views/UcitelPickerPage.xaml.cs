@@ -1,8 +1,11 @@
-﻿using Project_K.Services;
+﻿using Kyberna_k.ViewModel;
+using Project_K.Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static Android.App.Assist.AssistStructure;
 
 namespace Project_K.Views
 {
@@ -10,10 +13,13 @@ namespace Project_K.Views
     public partial class UcitelPickerPage : ContentPage
     {
         public static string teacherRealName;
+        private ViewModel viewModel;
         public UcitelPickerPage()
         {
             Appearing += OnPageAppearing;
             InitializeComponent();
+            viewModel = new ViewModel();
+            BindingContext = viewModel;
         }
         protected override bool OnBackButtonPressed()
         {
@@ -34,8 +40,9 @@ namespace Project_K.Views
             TeacherName.IsVisible = false;
             TeacherView.ItemsSource = null;
         }
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
+            viewModel.IsLoading = true;
             var selectedItem = PickerOfTeachers.SelectedItem as string;
             if (selectedItem != null)
             {
@@ -81,25 +88,29 @@ namespace Project_K.Views
                     DisplayAlert("Něco je špatně", $"Nenašli jsme učitele, prosím kontaktujte vývojáře", "OK");
                     return;
                 }
-                string result = GetTeacher.TeacherRefresh();
+                string result = await Task.Run(() => GetTeacher.TeacherRefresh());
                 if (result != "good")
                 {
                     if (result == "noteacherselected")
-                        DisplayAlert("Varování", $"Teacher je null neco se stalo idk wtf pls posli mi to dik<3", "OK");
+                        await DisplayAlert("Varování", $"Teacher je null neco se stalo idk wtf pls posli mi to dik<3", "OK");
                     if (result == "ucitelneuci")
-                        DisplayAlert("Varování", $"Učitel dneska neučí", "OK");
+                        await DisplayAlert("Varování", $"Učitel dneska neučí", "OK");
                     if (result == "nointernet")
-                        DisplayAlert("Varování", $"Není připojení k internetu", "OK");
+                        await DisplayAlert("Varování", $"Není připojení k internetu", "OK");
                     ResetView();
                     return;
                 }
-                TeacherView.ItemsSource = GetTeacher.Teacher;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    TeacherView.ItemsSource = GetTeacher.Teacher;
+                });
                 PickerOfTeachers.IsVisible = false;
                 AcceptButton.IsVisible = false;
                 label1.IsVisible = false;
                 TeacherView.IsVisible = true;
                 TeacherName.Text = selectedItem;
                 TeacherName.IsVisible = true;
+                viewModel.IsLoading = false;
             }
         }
     }

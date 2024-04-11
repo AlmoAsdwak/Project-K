@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-K.Android", "Projec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-K.iOS", "Project-K\Project-K.iOS\Project-K.iOS.csproj", "{01606E73-1B10-4E6C-9D3F-BC44CAF486AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-K", "Project-K\Project-K\Project-K.csproj", "{4829EF2E-C5F5-4658-8E3A-C29C309ECC11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project-K", "Project-K\Project-K\Project-K.csproj", "{4829EF2E-C5F5-4658-8E3A-C29C309ECC11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

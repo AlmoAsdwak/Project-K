@@ -3,7 +3,8 @@ using System;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using System.Threading.Tasks;
+using Kyberna_k.ViewModel;
 namespace Project_K.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -11,10 +12,14 @@ namespace Project_K.Views
     {
         public static TimeSpan from;
         public static TimeSpan to;
+        private ViewModel viewModel;
         public UcebnaFinder()
         {
             Appearing += OnPageAppearing;
             InitializeComponent();
+            viewModel = new ViewModel();
+            BindingContext = viewModel;
+            
         }
         private void OnPageAppearing(object sender, EventArgs e) => ResetView();
         protected override bool OnBackButtonPressed()
@@ -33,29 +38,37 @@ namespace Project_K.Views
             endTimePicker.IsVisible = true;
             AcceptButton.IsVisible = true;
             ClassesView.IsVisible = false;
+            MainLabel.IsVisible = false;
         }
-        private void AcceptButton_Clicked(object sender, EventArgs e)
+        private async void AcceptButton_Clicked(object sender, EventArgs e)
         {
+            viewModel.IsLoading = true;
             from = startTimePicker.Time;
             to = endTimePicker.Time;
-            string result = GetClassrooms.ClassroomsRefresh();
+            string result = await Task.Run(() => GetClassrooms.ClassroomsRefresh());
             if (result != "good")
             {
                 if (result == "badlyselected")
-                    DisplayAlert("Varování", $"Špatně vybraný datum", "OK");
+                    await DisplayAlert("Varování", $"Špatně vybraný datum", "OK");
                 if (result == "zadnavolnaucebna")
-                    DisplayAlert("Varování", $"Ve vybraném čase není volná učebna", "OK");
+                    await DisplayAlert("Varování", $"Ve vybraném čase není volná učebna", "OK");
                 if (result == "nointernet")
-                    DisplayAlert("Varování", $"Není připojení k internetu", "OK");
+                    await DisplayAlert("Varování", $"Není připojení k internetu", "OK");
                 return;
             }
-            ClassesView.ItemsSource = GetClassrooms.Classes;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                ClassesView.ItemsSource = GetClassrooms.Classes;
+            });
+
             label1.IsVisible = false;
             label2.IsVisible = false;
             startTimePicker.IsVisible = false;
             endTimePicker.IsVisible = false;
             AcceptButton.IsVisible = false;
             ClassesView.IsVisible = true;
+            MainLabel.IsVisible = true;
+            viewModel.IsLoading = false;
         }
         void startOnTimePickerPropertyChanged(object sender, PropertyChangedEventArgs args)
         {

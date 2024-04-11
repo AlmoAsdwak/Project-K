@@ -2,7 +2,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project_K.Views.UcitelPickerPage"
              BackgroundColor="Black"
+              xmlns:vm="clr-namespace:Kyberna_k.ViewModel"
              Title="Kde je učitel">
+    <ContentPage.BindingContext>
+        <vm:ViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -57,6 +61,7 @@
                 </Picker>
                 <Button x:Name="AcceptButton" TextColor="White" Text="Výběr" BackgroundColor="DarkOrange" Clicked="Button_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" CornerRadius="15"/>
             </StackLayout>
+            <ActivityIndicator x:Name="loadingIndicator" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" Color="White" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
