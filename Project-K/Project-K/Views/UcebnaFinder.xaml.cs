@@ -74,7 +74,7 @@ namespace Project_K.Views
                 var timePicker = sender as TimePicker;
                 var time = timePicker.Time;
                 if (time.Hours < 7 || time.Hours > 21)
-                    timePicker.Time = new TimeSpan(7, 0, 0);
+                    timePicker.Time = new TimeSpan(21, 0, 0);
             }
         }
         private void startTimePicker_Unfocused(object sender, FocusEventArgs e) => endTimePicker.Focus();

@@ -90,6 +90,7 @@ namespace Project_K.Views
                         DisplayAlert("Varování", $"Učitel dneska neučí", "OK");
                     if (result == "nointernet")
                         DisplayAlert("Varování", $"Není připojení k internetu", "OK");
+                    ResetView();
                     return;
                 }
                 TeacherView.ItemsSource = GetTeacher.Teacher;

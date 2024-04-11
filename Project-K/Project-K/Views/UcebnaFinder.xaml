@@ -5,6 +5,7 @@
              xmlns:data="clr-namespace:Project_K.Services"
              Background="Black"
              x:Class="Project_K.Views.UcebnaFinder">
+
     <ContentPage.Content>
         <Grid>
                 <Grid.RowDefinitions>
@@ -25,6 +26,7 @@
                     </StackLayout>
                     <Button x:Name="AcceptButton" Text="Výběr" TextColor="White" BackgroundColor="DarkOrange" Clicked="AcceptButton_Clicked"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" CornerRadius="15"></Button>
                 </StackLayout>
-            </Grid>
+            <ActivityIndicator x:Name="loadingIndicator" IsRunning="False" IsVisible="False" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" Color="White" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
