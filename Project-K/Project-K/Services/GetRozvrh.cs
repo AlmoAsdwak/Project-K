@@ -22,7 +22,7 @@ namespace Project_K.Services
                 Rozvrh.Clear();
                 var storage = SecureStorage.GetAsync("Id").Result;
                 int id = Convert.ToInt32(storage);
-                DateTime date = DateTime.Now;
+                DateTime date = DateTime.Now.AddDays(Views.RozvrhPage.Days);
                 if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
                     return;
                 var data = new { userid = id.ToString(), dateTime = date };

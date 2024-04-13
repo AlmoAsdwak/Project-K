@@ -19,7 +19,7 @@
             <ScrollView Grid.Row="0">
                 <StackLayout Orientation="Vertical" Padding="30,30,30,24" Spacing="10">
                     <Label x:Name="TeacherName" Text="" FontSize="Title" IsVisible="False" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White"></Label>
-                    <CollectionView x:Name="TeacherView" Margin="5,0,0,0" IsVisible="False" BackgroundColor="Black" ItemTemplate="{StaticResource Teacher}"/>
+                    <CollectionView x:Name="TeacherView" HorizontalOptions="CenterAndExpand" IsVisible="False" BackgroundColor="Black" ItemTemplate="{StaticResource Teacher}"/>
                 </StackLayout>
             </ScrollView>
             <StackLayout Grid.Row="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">

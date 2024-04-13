@@ -11,10 +11,17 @@
                 <RowDefinition Height="0" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            <Grid WidthRequest="50" HeightRequest="50" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                <ActivityIndicator x:Name="loadingIndicator" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            </Grid>
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical"  Padding="20,24,30,24" Spacing="10">
-                    <Label x:Name="Day" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="White" FontSize="Title"/>
-                    <CollectionView Margin="12,0,0,0" x:Name="RozvrhCollectionView" Background="Black" ItemsSource="{x:Static data:GetRozvrh.Rozvrh}" ItemTemplate="{StaticResource Rozvrh}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Button HorizontalOptions="StartAndExpand" Clicked="ButtonSubtracter" Padding="0,0,0,12" Text="⟵" WidthRequest="50" TextColor="White" BackgroundColor="Black" CornerRadius="15" FontSize="30"/>
+                        <Label x:Name="Day" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" Text="Sobota" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="White" FontSize="Title"/>
+                        <Button HorizontalOptions="EndAndExpand" Clicked="ButtonAdder" Padding="0,0,0,12" Text="⟶" WidthRequest="50" TextColor="White" BackgroundColor="Black" CornerRadius="15" FontSize="30" />
+                    </StackLayout>
+                    <CollectionView HorizontalOptions="CenterAndExpand" x:Name="RozvrhCollectionView" Background="Black" ItemsSource="{x:Static data:GetRozvrh.Rozvrh}" ItemTemplate="{StaticResource Rozvrh}"/>
                 </StackLayout>
             </ScrollView>
         </Grid>
