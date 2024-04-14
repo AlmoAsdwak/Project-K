@@ -1,26 +1,20 @@
 ﻿using Kyberna_k.ViewModel;
 using Project_K.Services;
 using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static Android.App.Assist.AssistStructure;
 
 namespace Project_K.Views
 {
     public partial class RozvrhPage : ContentPage
     {
+        readonly static HttpClient client = new HttpClient();
         public static int Days = 0;
         private ViewModel viewModel;
         public RozvrhPage()
         {
-            MessagingCenter.Subscribe<object, string>(this, "DisplayAlert", async (sender, arg) =>
-            {
-                var result = await DisplayAlert("Varování", arg, "Ano","Ne");
-                if (result)
-                {
-                    await Browser.OpenAsync("https://whoisalmo.cz/RozvrhAPP",BrowserLaunchMode.SystemPreferred);
-                }
-            });
             InitializeComponent();
             viewModel = new ViewModel();
             BindingContext = viewModel;
@@ -31,11 +25,24 @@ namespace Project_K.Views
                 Day.Text = GetDate();
                 RozvrhRefresh.IsRefreshing = false;
             });
+            Check();
+
+        }
+        private async void Check()
+        {
+            var result = await client.GetAsync("https://whoisalmo.cz/api/school/check");
+            if (App.version != await result.Content.ReadAsStringAsync())
+            {
+                var resulta = await DisplayAlert("Varování", $"Máte starou verzi, chcete aktualizovat?", "Ano", "Ne");
+                if (resulta)
+                   await Browser.OpenAsync("https://whoisalmo.cz/RozvrhAPP", BrowserLaunchMode.SystemPreferred);
+            }
         }
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<object, string>(this, "DisplayAlert");
+            viewModel.IsLoading = false;
         }
         private string GetDate()
         {
@@ -53,19 +60,19 @@ namespace Project_K.Views
             }
         }
 
-        private void ButtonAdder(object sender, EventArgs e)
+        private async void ButtonAdder(object sender, EventArgs e)
         {
             viewModel.IsLoading = true;
             Days++;
-            GetRozvrh.RefreshRozvrh();
+            await Task.Run(() => GetRozvrh.RefreshRozvrh());
             Day.Text = GetDate();
             viewModel.IsLoading = false;
         }
-        private void ButtonSubtracter(object sender, EventArgs e)
+        private async void ButtonSubtracter(object sender, EventArgs e)
         {
             viewModel.IsLoading = true;
             Days--;
-            GetRozvrh.RefreshRozvrh();
+            await Task.Run(() => GetRozvrh.RefreshRozvrh());
             Day.Text = GetDate();
             viewModel.IsLoading = false;
         }

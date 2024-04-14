@@ -1,20 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Project_K.Views.RozvrhPage"
-             xmlns:data="clr-namespace:Project_K.Services"
              Title="Rozvrh"
-             BackgroundColor="Black">
+             xmlns:vm="clr-namespace:Kyberna_k.ViewModel"
+             xmlns:data="clr-namespace:Project_K.Services"
+             BackgroundColor="Black"
+             x:Class="Project_K.Views.RozvrhPage">
+    <ContentPage.BindingContext>
+        <vm:ViewModel />
+    </ContentPage.BindingContext>
+
     <RefreshView x:Name="RozvrhRefresh">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid WidthRequest="50" HeightRequest="50" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
                 <ActivityIndicator x:Name="loadingIndicator" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
             </Grid>
-            <ScrollView Grid.Row="1">
+            <ScrollView Grid.Row="0">
                 <StackLayout Orientation="Vertical"  Padding="20,24,30,24" Spacing="10">
                     <StackLayout Orientation="Horizontal">
                         <Button HorizontalOptions="StartAndExpand" Clicked="ButtonSubtracter" Padding="0,0,0,12" Text="⟵" WidthRequest="50" TextColor="White" BackgroundColor="Black" CornerRadius="15" FontSize="30"/>

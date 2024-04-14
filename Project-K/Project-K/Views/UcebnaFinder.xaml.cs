@@ -39,6 +39,7 @@ namespace Project_K.Views
             AcceptButton.IsVisible = true;
             ClassesView.IsVisible = false;
             MainLabel.IsVisible = false;
+            viewModel.IsLoading = false;
         }
         private async void AcceptButton_Clicked(object sender, EventArgs e)
         {
@@ -54,6 +55,7 @@ namespace Project_K.Views
                     await DisplayAlert("Varování", $"Ve vybraném čase není volná učebna", "OK");
                 if (result == "nointernet")
                     await DisplayAlert("Varování", $"Není připojení k internetu", "OK");
+                ResetView();
                 return;
             }
             Device.BeginInvokeOnMainThread(() =>
