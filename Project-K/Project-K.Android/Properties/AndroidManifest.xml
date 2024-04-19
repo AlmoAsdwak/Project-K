@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.1.1" package="cz.Kyberna.projectK" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.2.5" package="cz.Kyberna.projectK" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
 	<application android:label="Kyberna" android:theme="@style/MainTheme" android:extractNativeLibs="true" android:icon="@drawable/Kyberna_ikona">
 		<receiver android:name=".Widgets.HelloWorldWidget" android:label="Rozvrh Widget" android:exported="true">

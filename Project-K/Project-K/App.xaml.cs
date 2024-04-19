@@ -6,7 +6,7 @@ namespace Project_K
 {
     public partial class App : Application
     {
-        public const string version = "1.1.1";
+        public const string version = "1.2.5";
         public App()
         {
             InitializeComponent();

@@ -38,6 +38,7 @@ namespace Project_K.Views
             TeacherName.Text = null;
             TeacherName.IsVisible = false;
             TeacherView.ItemsSource = null;
+            viewModel.IsLoading = false;
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {
@@ -86,6 +87,7 @@ namespace Project_K.Views
                 if (!selection)
                 {
                     await DisplayAlert("Něco je špatně", $"Nenašli jsme učitele, prosím kontaktujte vývojáře", "OK");
+                    ResetView();
                     return;
                 }
                 string result = await Task.Run(() => GetTeacher.TeacherRefresh());

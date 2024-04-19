@@ -22,7 +22,7 @@ namespace Project_K.Services
                 Rozvrh.Clear();
                 var storage = SecureStorage.GetAsync("Id").Result;
                 int id = Convert.ToInt32(storage);
-                DateTime date = DateTime.Now;
+                DateTime date = DateTime.Now.AddDays(Views.RozvrhPage.Days);
                 if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
                     return;
                 var data = new { userid = id.ToString(), dateTime = date };
@@ -38,23 +38,12 @@ namespace Project_K.Services
                     foreach (var cell in dataJson2.Cells.OrderBy(cell => cell.StartTime))
                         Rozvrh.Add(cell);
                 });
-                Check();
 
             }
             catch (Exception)
             {
                 return;
             }
-        }
-        public static async Task Check()
-        {
-            var result = client.GetAsync("https://whoisalmo.cz/api/school/check").Result;
-            if (App.version != result.Content.ReadAsStringAsync().Result)
-            {
-                var dummySender = new object();
-                MessagingCenter.Send<object, string>(dummySender, "DisplayAlert", $"Máte starou verzi, chcete aktualizovat?");
-            }
-            await Task.CompletedTask;
         }
     }
 }
