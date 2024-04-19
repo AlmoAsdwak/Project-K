@@ -28,6 +28,7 @@
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Jan Lang</x:String>
+                            <x:String>Dagmar Bursová</x:String>
                             <x:String>Richard Rejthar</x:String>
                             <x:String>Matěj Lang</x:String>
                             <x:String>Libor Beneš</x:String>

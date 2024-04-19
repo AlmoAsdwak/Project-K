@@ -54,6 +54,7 @@ namespace Project_K.Views
                     { "Michaela Ducháčková", "DU" },
                     { "Milan Hloušek", "HS" },
                     { "Jaroslav Hývl", "HY" },
+                    { "Dagmar Bursová", "BS" },
                     { "Zlata Karpíšková", "KR" },
                     { "Eva Kuntová", "KT" },
                     { "Roman Loskot", "LO" },
@@ -84,7 +85,7 @@ namespace Project_K.Views
                 bool selection = teachers.TryGetValue(selectedItem, out teacherRealName);
                 if (!selection)
                 {
-                    DisplayAlert("Něco je špatně", $"Nenašli jsme učitele, prosím kontaktujte vývojáře", "OK");
+                    await DisplayAlert("Něco je špatně", $"Nenašli jsme učitele, prosím kontaktujte vývojáře", "OK");
                     return;
                 }
                 string result = await Task.Run(() => GetTeacher.TeacherRefresh());

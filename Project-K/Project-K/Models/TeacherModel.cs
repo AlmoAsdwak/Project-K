@@ -15,6 +15,15 @@ namespace Project_K.Models
         //[JsonPropertyName("subjectName")]
         public string SubjectName { get; set; }
         public string StudyGroupName { get; set; }
+
+        public string Class { get; private set; }
+        public string[] Classes
+        {
+            set
+            {
+                Class = value.ToString();
+            }
+        }
         public string Time
         {
             get => _startTime.ToString("HH:mm:ss");
