@@ -136,7 +136,7 @@
                             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Vertical">
                                 <Label TextColor="White"
                                VerticalTextAlignment="Center"
-                               Text="{Binding Class}"
+                               Text="{Binding ClassesAsString}"
                                HorizontalOptions="CenterAndExpand"
                                FontAttributes="Bold"
                                    FontSize="11"

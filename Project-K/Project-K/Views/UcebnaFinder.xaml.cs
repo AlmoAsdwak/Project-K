@@ -15,13 +15,16 @@ namespace Project_K.Views
         private ViewModel viewModel;
         public UcebnaFinder()
         {
-            Appearing += OnPageAppearing;
             InitializeComponent();
             viewModel = new ViewModel();
             BindingContext = viewModel;
-            
+
         }
-        private void OnPageAppearing(object sender, EventArgs e) => ResetView();
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ResetView();
+        }
         protected override bool OnBackButtonPressed()
         {
             if (!AcceptButton.IsVisible)
@@ -81,6 +84,8 @@ namespace Project_K.Views
                 if (time.Hours < 7 || time.Hours > 21)
                     timePicker.Time = new TimeSpan(7, 0, 0);
             }
+            if (args.PropertyName == TimePicker.TimeProperty.PropertyName)
+                endTimePicker.Focus();
         }
         void endOnTimePickerPropertyChanged(object sender, PropertyChangedEventArgs args)
         {
@@ -92,6 +97,5 @@ namespace Project_K.Views
                     timePicker.Time = new TimeSpan(21, 0, 0);
             }
         }
-        private void startTimePicker_Unfocused(object sender, FocusEventArgs e) => endTimePicker.Focus();
     }
 }

@@ -15,7 +15,6 @@ namespace Project_K.Views
         private ViewModel viewModel;
         public UcitelPickerPage()
         {
-            Appearing += OnPageAppearing;
             InitializeComponent();
             viewModel = new ViewModel();
             BindingContext = viewModel;
@@ -28,7 +27,11 @@ namespace Project_K.Views
                 Shell.Current.GoToAsync("//RozvrhPage").Wait();
             return true;
         }
-        private void OnPageAppearing(object sender, EventArgs e) => ResetView();
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ResetView();
+        }
         private void ResetView()
         {
             PickerOfTeachers.IsVisible = true;

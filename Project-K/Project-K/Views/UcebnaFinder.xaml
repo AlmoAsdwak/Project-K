@@ -28,7 +28,7 @@
             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                 <Label x:Name="label1" TextColor="White" Text="Vyber si čas kde chceš vyhledat volnou učebnu:" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
                 <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
-                    <TimePicker x:Name="startTimePicker"  FontSize="25" HorizontalOptions="CenterAndExpand" Time="7:00"  Format="HH:mm" Unfocused="startTimePicker_Unfocused" PropertyChanged="startOnTimePickerPropertyChanged" BackgroundColor="Black" TextColor="DarkOrange"/>
+                    <TimePicker x:Name="startTimePicker" FontSize="25" HorizontalOptions="CenterAndExpand" Time="7:00"  Format="HH:mm" PropertyChanged="startOnTimePickerPropertyChanged" BackgroundColor="Black" TextColor="DarkOrange"/>
                     <Label x:Name="label2" FontSize="25" TextColor="White" Text="-" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
                     <TimePicker HorizontalOptions="CenterAndExpand" FontSize="25" x:Name="endTimePicker" Time="21:00" Format="HH:mm" PropertyChanged="endOnTimePickerPropertyChanged" BackgroundColor="Black" TextColor="DarkOrange"/>
                 </StackLayout>
