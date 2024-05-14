@@ -25,24 +25,18 @@ namespace Project_K.Views
                 Day.Text = GetDate();
                 RozvrhRefresh.IsRefreshing = false;
             });
-            Check();
 
-        }
-        private async void Check()
-        {
-            var result = await client.GetAsync("https://whoisalmo.cz/api/school/check");
-            if (App.version != await result.Content.ReadAsStringAsync())
-            {
-                var resulta = await DisplayAlert("Varování", $"Máte starou verzi, chcete aktualizovat?", "Ano", "Ne");
-                if (resulta)
-                   await Browser.OpenAsync("https://whoisalmo.cz/RozvrhAPP", BrowserLaunchMode.SystemPreferred);
-            }
         }
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<object, string>(this, "DisplayAlert");
             viewModel.IsLoading = false;
+        }
+        [Obsolete]
+        void OnPrivacyPolicyButtonClicked(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("http://whoisalmo.cz/soukromi"));
         }
         private string GetDate()
         {

@@ -32,7 +32,11 @@ namespace Project_K.Views
             InitializeComponent();
             scannerView.OnScanResult += Result;
         }
-
+        [Obsolete]
+        void OnPrivacyPolicyButtonClicked(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("http://whoisalmo.cz/soukromi"));
+        }
         public void Result(ZXing.Result result) =>
             Device.BeginInvokeOnMainThread(() =>
             {
