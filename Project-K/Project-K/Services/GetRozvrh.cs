@@ -32,11 +32,26 @@ namespace Project_K.Services
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 var dataJson2 = JsonSerializer.Deserialize<DataJson>(responseString);
                 if (dataJson2 == null) return;
+
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     Rozvrh.Clear();
                     foreach (var cell in dataJson2.Cells.OrderBy(cell => cell.StartTime))
                         Rozvrh.Add(cell);
+                    for (int i = 0; i < Rozvrh.Count - 2; i++)
+                    {
+                        var idk2 = TimeSpan.Parse(Rozvrh[i].TimeTo);
+                        var idk1 = TimeSpan.Parse(Rozvrh[i + 1].FormattedStartTime);
+                        var time = idk1.Subtract(idk2).TotalMinutes;
+                        if (time >= 35)
+                        {
+                            if (Rozvrh[i+1].Subject == "Volno") continue;
+                            Models.Cell schoolbreak = new Models.Cell();
+                            schoolbreak.StartTime = Rozvrh[i].TimeTo;
+                            schoolbreak.Subject = "Volno";
+                            Rozvrh.Insert(i, schoolbreak);
+                        }
+                    }
                 });
 
             }
