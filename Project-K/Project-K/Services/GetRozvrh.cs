@@ -54,11 +54,14 @@ namespace Project_K.Services
                         var itemnext = TimeSpan.Parse(tempRozvrh[i + 1].FormattedStartTime);
                         var compare = itemnext.TotalMinutes - item.TotalMinutes;
                         if (compare < 35) continue;
-                        var tmp = new Cell();
-                        tmp.UnformattedStartTime = tempRozvrh[i].UnformattedStartTime.AddMinutes(45);
-                        tmp.TimeTo = tempRozvrh[i + 1].FormattedStartTime;
-                        tmp.Subject = "Volno";
+                        var tmp = new Cell
+                        {
+                            UnformattedStartTime = tempRozvrh[i].UnformattedStartTime.AddMinutes(45),
+                            TimeTo = tempRozvrh[i + 1].FormattedStartTime,
+                            Subject = "Volno"
+                        };
                         tempRozvrh.Add(tmp);
+
                     }
 
                     foreach (var cell in tempRozvrh.OrderBy(x=>x.UnformattedStartTime))

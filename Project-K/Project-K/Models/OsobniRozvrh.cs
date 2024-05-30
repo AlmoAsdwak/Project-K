@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Project_K.Models
 {
     public class DataJson
     {
-        public Cell[] Cells { get; set; }
+        public List<Cell> Cells { get; set; }
     }
 
     public class Cell
