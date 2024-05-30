@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Cell = Project_K.Models.Cell;
@@ -13,8 +12,8 @@ namespace Project_K.Services
 {
     public static class GetRozvrh
     {
-        public static ObservableCollection<Models.Cell> Rozvrh { get; private set; } =
-            new ObservableCollection<Models.Cell>();
+        public static ObservableCollection<Cell> Rozvrh { get; private set; } =
+            new ObservableCollection<Cell>();
 
         readonly static HttpClient client = new HttpClient();
         static GetRozvrh() => RefreshRozvrh();
@@ -47,8 +46,8 @@ namespace Project_K.Services
                         cell.TimeTo = cell.UnformattedStartTime.AddMinutes(45).ToString("HH:mm");
                         tempRozvrh.Add(cell);
                     }
-
-                    for (var i = 0; i < tempRozvrh.Count - 1; i++)
+                    int startCount = tempRozvrh.Count-1;
+                    for (var i = 0; i < startCount; i++)
                     {
                         var item = TimeSpan.Parse(tempRozvrh[i].TimeTo);
                         var itemnext = TimeSpan.Parse(tempRozvrh[i + 1].FormattedStartTime);
