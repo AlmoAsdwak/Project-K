@@ -123,7 +123,7 @@
     <AndroidResource Include="Resources\drawable\dvere_final.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Logut.png" />
+    <AndroidResource Include="Resources\drawable\Logout.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\kde_je_ucitel_ikona.png" />
@@ -143,6 +143,9 @@
     <AndroidResource Include="Resources\drawable\round_corner_background.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\food.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
