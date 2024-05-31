@@ -23,10 +23,15 @@ namespace Project_K.Views
                 submitForm.IsVisible = true;
                 return;
             }
-            Device.BeginInvokeOnMainThread(() =>
+            else
             {
-                JidlaView.ItemsSource = GetPapu.Jidla;
-            });
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    JidlaView.ItemsSource = GetPapu.Jidla;
+                });
+                JidlaView.IsVisible = true;
+            }
+
         }
 
         private void loginButton_Clicked(object sender, System.EventArgs e)

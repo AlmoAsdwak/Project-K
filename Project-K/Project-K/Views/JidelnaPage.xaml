@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project_K.Views.JidelnaPage"
+             Title="Jídelna"
              BackgroundColor="Black">
     <ContentPage.Content>
         <StackLayout>
@@ -43,6 +44,9 @@
                 <Button Text="Login"
                         Clicked="loginButton_Clicked"
                         x:Name="loginButton"
+                        VerticalOptions="CenterAndExpand"
+                        BackgroundColor="DarkOrange"
+                        TextColor="Black"
                         HorizontalOptions="CenterAndExpand"
                         Grid.Column="1" />
 
@@ -51,7 +55,7 @@
                           Grid.Column="2" />
                 <Label Text="Auto-Login" Grid.ColumnSpan="3" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,40,0" TextColor="White"></Label>
             </Grid>
-            <CollectionView x:Name="JidlaView" HorizontalOptions="CenterAndExpand" IsVisible="True" BackgroundColor="Black" ItemTemplate="{StaticResource Jidla}"/>
+            <CollectionView x:Name="JidlaView" Margin="5,12,0,0" HorizontalOptions="CenterAndExpand" IsVisible="False" BackgroundColor="Black" ItemTemplate="{StaticResource Jidla}"/>
 
 
         </StackLayout>

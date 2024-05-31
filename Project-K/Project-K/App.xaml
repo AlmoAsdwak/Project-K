@@ -6,14 +6,7 @@
         <ResourceDictionary>
             <DataTemplate x:Key="Rozvrh">
                 <StackLayout Margin="0,0,0,12">
-                    <Frame Padding="5" Margin="0,0,0,0" HeightRequest="52" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True">
-                        <Frame.CornerRadius>
-                            <OnPlatform x:TypeArguments="x:Single">
-                                <On Platform="iOS" Value="12" />
-                                <On Platform="Android" Value="12" />
-                                <On Platform="UWP" Value="12" />
-                            </OnPlatform>
-                        </Frame.CornerRadius>
+                    <Frame Padding="5" Margin="0,0,0,0" HeightRequest="52" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True" CornerRadius="12">
                         <Grid>
                             <Label
                            TextColor="White"
@@ -78,34 +71,26 @@
             </DataTemplate>
             <DataTemplate x:Key="Teacher">
                 <StackLayout Margin="0,0,0,12">
-                    <Frame Padding="5" Margin="0,0,0,0" HeightRequest="52" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True">
-                        <Frame.CornerRadius>
-                            <OnPlatform x:TypeArguments="x:Single">
-                                <On Platform="iOS" Value="12" />
-                                <On Platform="Android" Value="12" />
-                                <On Platform="UWP" Value="12" />
-                            </OnPlatform>
-                        </Frame.CornerRadius>
+                    <Frame Padding="5" Margin="0,0,0,0" HeightRequest="52" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True" CornerRadius="12">
                         <Grid>
-                            <Label
-                TextColor="White"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="Start"
-                     FontSize="20"
-                     FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                Text="{Binding SubjectName}"
-                FontAttributes="Bold" 
-                Margin="10,0,0,0"/>
+                            <Label  TextColor="White"
+                                    VerticalOptions="CenterAndExpand"
+                                    HorizontalOptions="Start"
+                                    FontSize="20"
+                                    FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                                    Text="{Binding SubjectName}"
+                                    FontAttributes="Bold" 
+                                    Margin="10,0,0,0"/>
                             <StackLayout HorizontalOptions="End" VerticalOptions="CenterAndExpand">
-                                <Label TextColor="White"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalTextAlignment="Center"
-                    FontSize="20"
-                            FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                    Text="{Binding ClassRoom}"
-                    FontAttributes="Bold" 
-                    IsVisible="true"
-                    Margin="0,0,10,0"/>
+                                <Label  TextColor="White"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalTextAlignment="Center"
+                                        FontSize="20"
+                                        FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                                        Text="{Binding ClassRoom}"
+                                        FontAttributes="Bold" 
+                                        IsVisible="true"
+                                        Margin="0,0,10,0"/>
                             </StackLayout>
                             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                                 <Label TextColor="White"
@@ -149,31 +134,25 @@
                 </StackLayout>
             </DataTemplate>
             <DataTemplate x:Key="Ucebna">
-                <StackLayout Margin="0,0,0,12">
-                    <Frame Padding="5" Margin="0,0,0,0" HeightRequest="52" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True">
-                        <Frame.CornerRadius>
-                            <OnPlatform x:TypeArguments="x:Single">
-                                <On Platform="iOS" Value="12" />
-                                <On Platform="Android" Value="12" />
-                                <On Platform="UWP" Value="12" />
-                            </OnPlatform>
-                        </Frame.CornerRadius>
+                <FlexLayout Margin="0,0,0,12" Direction="Column" AlignItems="Center" JustifyContent="Start">
+                    <Frame Padding="5" Margin="0,0,0,0" CornerRadius="12" HeightRequest="52" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True">
                         <Grid>
-                            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                            <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Center">
                                 <Label Text="{Binding .}"
-                                    TextColor="White"
-                                    FontSize="20"
-                                    FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                                    HorizontalOptions="CenterAndExpand"
-                                    VerticalTextAlignment="Center"/>
-                            </StackLayout>
+                           TextColor="White"
+                           FontSize="20"
+                           FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalTextAlignment="Center"/>
+                            </FlexLayout>
                         </Grid>
                     </Frame>
-                </StackLayout>
+                </FlexLayout>
             </DataTemplate>
+
             <DataTemplate x:Key="Jidla">
                 <StackLayout Margin="0,0,0,12">
-                    <Frame Padding="5" Margin="0,0,0,0" HeightRequest="100" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True">
+                    <Frame BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True" VerticalOptions="Start" HorizontalOptions="CenterAndExpand">
                         <Frame.CornerRadius>
                             <OnPlatform x:TypeArguments="x:Single">
                                 <On Platform="iOS" Value="12" />
@@ -181,30 +160,66 @@
                                 <On Platform="UWP" Value="12" />
                             </OnPlatform>
                         </Frame.CornerRadius>
-                        <Grid>
-                            <Label
-                    TextColor="White"
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="Start"
-                    FontSize="20"
-                    FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                    Text="{Binding date}"
-                    FontAttributes="Bold" 
-                    Margin="10,0,0,0"/>
-                            <CollectionView ItemsSource="{Binding foods}">
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding name}" TextColor="White" FontSize="16" />
-                                            <Label Text="{Binding ordered, StringFormat='{0:ordered}'}" TextColor="White" FontSize="16" />
-                                        </StackLayout>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-                        </Grid>
+
+                        <StackLayout Orientation="Vertical">
+                            <Label  TextColor="White"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="CenterAndExpand"
+                                    FontSize="20"
+                                    FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                                    Text="{Binding date}"
+                                    FontAttributes="Bold" 
+                                    Margin="10,0,0,0"/>
+                            <ScrollView HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                                <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="Start" BindableLayout.ItemsSource="{Binding foods}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Padding="5" Margin="0,8,0,0" BackgroundColor="IndianRed" CornerRadius="8" HasShadow="False">
+                                                <Frame.Triggers>
+                                                    <DataTrigger TargetType="Frame" Binding="{Binding name}" Value="NENÍ ZADÁNO">
+                                                        <Setter Property="BackgroundColor" Value="DarkOrange" />
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Frame" Binding="{Binding name}" Value="">
+                                                        <Setter Property="BackgroundColor" Value="DarkOrange" />
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Frame" Binding="{Binding ordered}" Value="true">
+                                                        <Setter Property="BackgroundColor" Value="Green" />
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Frame" Binding="{Binding type}" Value="0">
+                                                        <Setter Property="BackgroundColor" Value="DarkOrange"/>
+                                                    </DataTrigger>
+                                                </Frame.Triggers>
+                                                <Label Text="{Binding name}" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="White" FontSize="16">
+                                                    <Label.Triggers>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding name}" Value="NENÍ ZADÁNO">
+                                                            <Setter Property="TextColor" Value="DarkOrange" />
+                                                            <Setter Property="IsVisible" Value="False" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding name}" Value="">
+                                                            <Setter Property="BackgroundColor" Value="DarkOrange" />
+                                                            <Setter Property="IsVisible" Value="False" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </FlexLayout>
+                            </ScrollView>
+
+                        </StackLayout>
                     </Frame>
                 </StackLayout>
             </DataTemplate>
+
+
+
+
+
+
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
