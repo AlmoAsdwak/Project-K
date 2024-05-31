@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project_K.App">
@@ -6,64 +7,72 @@
         <ResourceDictionary>
             <DataTemplate x:Key="Rozvrh">
                 <StackLayout Margin="0,0,0,12">
-                    <Frame Padding="5" Margin="0,0,0,0" HeightRequest="52" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True" CornerRadius="12">
+                    <Frame Padding="5" Margin="0,0,0,0" HeightRequest="52" BorderColor="Black" HasShadow="True" CornerRadius="12">
+                        <Frame.BackgroundColor>
+                            DarkOrange
+                        </Frame.BackgroundColor>
+                        <Frame.Triggers>
+                            <DataTrigger TargetType="Frame" Binding="{Binding Subject}" Value="Volno">
+                                <Setter Property="BackgroundColor" Value="Green" />
+                            </DataTrigger>
+                        </Frame.Triggers>
                         <Grid>
                             <Label
-                           TextColor="White"
-                           VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="Start"
                                 FontSize="20"
                                 FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                           Text="{Binding Subject}"
-                           FontAttributes="Bold" 
-                           Margin="10,0,0,0"/>
+                                Text="{Binding Subject}"
+                                FontAttributes="Bold"
+                                Margin="10,0,0,0" />
                             <StackLayout HorizontalOptions="End" VerticalOptions="CenterAndExpand">
                                 <Label TextColor="White"
-                               HorizontalOptions="CenterAndExpand"
-                               VerticalTextAlignment="Center"
-                               FontSize="20"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="20"
                                        FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                               Text="{Binding ClassRoom}"
-                               FontAttributes="Bold" 
-                               IsVisible="true"
-                               Margin="0,0,10,0"/>
+                                       Text="{Binding ClassRoom}"
+                                       FontAttributes="Bold"
+                                       IsVisible="true"
+                                       Margin="0,0,10,0" />
                             </StackLayout>
                             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                                 <Label TextColor="White"
-                               VerticalTextAlignment="Center"
-                               Text="{Binding FormattedStartTime}"
-                               HorizontalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       Text="{Binding FormattedStartTime}"
+                                       HorizontalOptions="CenterAndExpand"
                                        FontSize="20"
-                               FontAttributes="Bold"
-                               Margin="0,0,0,0"
+                                       FontAttributes="Bold"
+                                       Margin="0,0,0,0"
                                        FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                               IsVisible="true"/>
+                                       IsVisible="true" />
                                 <Label Text="-"
-                               TextColor="White"
+                                       TextColor="White"
                                        FontSize="20"
                                        FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                               HorizontalOptions="CenterAndExpand"
-                               VerticalTextAlignment="Center"/>
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center" />
                                 <Label TextColor="White"
-                               HorizontalOptions="CenterAndExpand"
-                                    FontSize="20"
-                               VerticalTextAlignment="Center"
-                               Text="{Binding TimeTo}"
-                               FontAttributes="Bold" 
+                                       HorizontalOptions="CenterAndExpand"
+                                       FontSize="20"
+                                       VerticalTextAlignment="Center"
+                                       Text="{Binding TimeTo}"
+                                       FontAttributes="Bold"
                                        FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                               IsVisible="true"
-                               Margin="0,0,0,0"/>
+                                       IsVisible="true"
+                                       Margin="0,0,0,0" />
                             </StackLayout>
                             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Vertical">
                                 <Label TextColor="White"
-                               VerticalTextAlignment="Center"
-                               Text="{Binding Teacher}"
-                               HorizontalOptions="CenterAndExpand"
-                               FontAttributes="Bold"
-                                   FontSize="11"
-                               Margin="0,35,0,0"
+                                       VerticalTextAlignment="Center"
+                                       Text="{Binding Teacher}"
+                                       HorizontalOptions="CenterAndExpand"
+                                       FontAttributes="Bold"
+                                       FontSize="11"
+                                       Margin="0,35,0,0"
                                        FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                               IsVisible="true"/>
+                                       IsVisible="true" />
                             </StackLayout>
                         </Grid>
                     </Frame>
@@ -73,61 +82,62 @@
                 <StackLayout Margin="0,0,0,12">
                     <Frame Padding="5" Margin="0,0,0,0" HeightRequest="52" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True" CornerRadius="12">
                         <Grid>
-                            <Label  TextColor="White"
-                                    VerticalOptions="CenterAndExpand"
-                                    HorizontalOptions="Start"
-                                    FontSize="20"
-                                    FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                                    Text="{Binding SubjectName}"
-                                    FontAttributes="Bold" 
-                                    Margin="10,0,0,0"/>
+                            <Label
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="Start"
+                                FontSize="20"
+                                FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                                Text="{Binding SubjectName}"
+                                FontAttributes="Bold"
+                                Margin="10,0,0,0" />
                             <StackLayout HorizontalOptions="End" VerticalOptions="CenterAndExpand">
-                                <Label  TextColor="White"
-                                        HorizontalOptions="CenterAndExpand"
-                                        VerticalTextAlignment="Center"
-                                        FontSize="20"
-                                        FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                                        Text="{Binding ClassRoom}"
-                                        FontAttributes="Bold" 
-                                        IsVisible="true"
-                                        Margin="0,0,10,0"/>
+                                <Label TextColor="White"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="20"
+                                       FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                                       Text="{Binding ClassRoom}"
+                                       FontAttributes="Bold"
+                                       IsVisible="true"
+                                       Margin="0,0,10,0" />
                             </StackLayout>
                             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                                 <Label TextColor="White"
-                    VerticalTextAlignment="Center"
-                    Text="{Binding FormattedStartTime}"
-                    HorizontalOptions="CenterAndExpand"
-                            FontSize="20"
-                    FontAttributes="Bold"
-                    Margin="0,0,0,0"
-                            FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                    IsVisible="true"/>
+                                       VerticalTextAlignment="Center"
+                                       Text="{Binding FormattedStartTime}"
+                                       HorizontalOptions="CenterAndExpand"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       Margin="0,0,0,0"
+                                       FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                                       IsVisible="true" />
                                 <Label Text="-"
-                    TextColor="White"
-                            FontSize="20"
-                            FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalTextAlignment="Center"/>
+                                       TextColor="White"
+                                       FontSize="20"
+                                       FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center" />
                                 <Label TextColor="White"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalTextAlignment="Center"
-                         FontSize="20"
-                    Text="{Binding TimeTo}"
-                    FontAttributes="Bold" 
-                            FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                    IsVisible="true"
-                    Margin="0,0,0,0"/>
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="20"
+                                       Text="{Binding TimeTo}"
+                                       FontAttributes="Bold"
+                                       FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                                       IsVisible="true"
+                                       Margin="0,0,0,0" />
                             </StackLayout>
                             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Vertical">
                                 <Label TextColor="White"
-                               VerticalTextAlignment="Center"
-                               Text="{Binding ClassesAsString}"
-                               HorizontalOptions="CenterAndExpand"
-                               FontAttributes="Bold"
-                                   FontSize="11"
-                               Margin="0,35,0,0"
+                                       VerticalTextAlignment="Center"
+                                       Text="{Binding ClassesAsString}"
+                                       HorizontalOptions="CenterAndExpand"
+                                       FontAttributes="Bold"
+                                       FontSize="11"
+                                       Margin="0,35,0,0"
                                        FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                               IsVisible="true"/>
+                                       IsVisible="true" />
                             </StackLayout>
                         </Grid>
                     </Frame>
@@ -152,14 +162,7 @@
 
             <DataTemplate x:Key="Jidla">
                 <StackLayout Margin="0,0,0,12">
-                    <Frame BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True" VerticalOptions="Start" HorizontalOptions="CenterAndExpand">
-                        <Frame.CornerRadius>
-                            <OnPlatform x:TypeArguments="x:Single">
-                                <On Platform="iOS" Value="12" />
-                                <On Platform="Android" Value="12" />
-                                <On Platform="UWP" Value="12" />
-                            </OnPlatform>
-                        </Frame.CornerRadius>
+                    <Frame BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" CornerRadius="12">
 
                         <StackLayout Orientation="Vertical">
                             <Label  TextColor="White"
