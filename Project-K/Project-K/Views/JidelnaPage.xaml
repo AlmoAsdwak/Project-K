@@ -2,13 +2,57 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project_K.Views.JidelnaPage"
-             Title="Jídelna"
              BackgroundColor="Black">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label x:Name="LoginText"
+                   IsVisible="False"
+                   TextColor="White"
+                   Text="Přihlašte se údajemi k jídelně"
+                   FontSize="Large"
+                   Margin="0,10,0,0"
+                   HorizontalOptions="CenterAndExpand" />
+
+            <StackLayout x:Name="loginForm" Orientation="Horizontal" Margin="0,20,0,0" IsVisible="False">
+                <Entry Placeholder="jméno"
+                       WidthRequest="125"
+                       PlaceholderColor="Gray"
+                       TextColor="White"
+                       x:Name="usernameEntry"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand" />
+
+                <Entry Placeholder="Heslo"
+                       WidthRequest="125"
+                       x:Name="passwordEntry"
+                       IsPassword="True"
+                       PlaceholderColor="Gray"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+            <Grid x:Name="submitForm" IsVisible="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Text="Login"
+                        Clicked="loginButton_Clicked"
+                        x:Name="loginButton"
+                        HorizontalOptions="CenterAndExpand"
+                        Grid.Column="1" />
+
+                <CheckBox x:Name="rememberMe"
+                          Color="DarkOrange"
+                          Grid.Column="2" />
+                <Label Text="Auto-Login" Grid.ColumnSpan="3" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,40,0" TextColor="White"></Label>
+            </Grid>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
