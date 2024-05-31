@@ -171,6 +171,40 @@
                     </Frame>
                 </StackLayout>
             </DataTemplate>
+            <DataTemplate x:Key="Jidla">
+                <StackLayout Margin="0,0,0,12">
+                    <Frame Padding="5" Margin="0,0,0,0" HeightRequest="100" BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True">
+                        <Frame.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Single">
+                                <On Platform="iOS" Value="12" />
+                                <On Platform="Android" Value="12" />
+                                <On Platform="UWP" Value="12" />
+                            </OnPlatform>
+                        </Frame.CornerRadius>
+                        <Grid>
+                            <Label
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Start"
+                    FontSize="20"
+                    FontFamily="Khyay-Regular.ttf#Khyay-Regular"
+                    Text="{Binding date}"
+                    FontAttributes="Bold" 
+                    Margin="10,0,0,0"/>
+                            <CollectionView ItemsSource="{Binding foods}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding name}" TextColor="White" FontSize="16" />
+                                            <Label Text="{Binding ordered, StringFormat='{0:ordered}'}" TextColor="White" FontSize="16" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

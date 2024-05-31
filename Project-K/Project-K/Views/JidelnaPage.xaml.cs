@@ -3,6 +3,7 @@ using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using System.Net.Http;
 using System.Text.Json;
+using Project_K.Services;
 using System.Net;
 using Project_K.Models;
 
@@ -22,6 +23,10 @@ namespace Project_K.Views
                 submitForm.IsVisible = true;
                 return;
             }
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                JidlaView.ItemsSource = GetPapu.Jidla;
+            });
         }
 
         private void loginButton_Clicked(object sender, System.EventArgs e)
