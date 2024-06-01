@@ -6,15 +6,25 @@ using System.Text.Json;
 using Project_K.Services;
 using System.Net;
 using System.Threading.Tasks;
+using Kyberna_k.ViewModel;
 
 namespace Project_K.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class JidelnaPage : ContentPage
     {
+        private ViewModel viewModel;
         public JidelnaPage()
         {
             InitializeComponent();
+            viewModel = new ViewModel();
+            BindingContext = viewModel;
+            JidelnaRefresh.Command = new Command(() =>
+            {
+                GetPapu.RefreshJidlo();
+                JidlaView.ItemsSource = GetPapu.Jidla;
+                JidelnaRefresh.IsRefreshing = false;
+            });
             var JidelnaSid = SecureStorage.GetAsync("JidelnaSid").Result;
             if (JidelnaSid == null)
             {

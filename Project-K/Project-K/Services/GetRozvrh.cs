@@ -12,14 +12,11 @@ namespace Project_K.Services
 {
     public static class GetRozvrh
     {
-        public static ObservableCollection<Cell> Rozvrh { get; private set; } =
-            new ObservableCollection<Cell>();
-
-        readonly static HttpClient client = new HttpClient();
-        static GetRozvrh() => RefreshRozvrh();
+        public static ObservableCollection<Cell> Rozvrh { get; private set; } = new ObservableCollection<Cell>();
 
         public static void RefreshRozvrh()
         {
+            HttpClient client = new HttpClient();
             try
             {
                 Rozvrh.Clear();
@@ -62,7 +59,6 @@ namespace Project_K.Services
                         tempRozvrh.Add(tmp);
 
                     }
-
                     foreach (var cell in tempRozvrh.OrderBy(x=>x.UnformattedStartTime))
                         Rozvrh.Add(cell);
                 });

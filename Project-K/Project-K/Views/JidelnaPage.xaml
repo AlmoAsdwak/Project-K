@@ -5,58 +5,60 @@
              Title="Jídelna"
              BackgroundColor="Black">
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="LoginText"
-                   IsVisible="False"
+        <RefreshView x:Name="JidelnaRefresh">
+            <StackLayout>
+                <Label x:Name="LoginText"
+               IsVisible="False"
+               TextColor="White"
+               Text="Přihlašte se údajemi k jídelně"
+               FontSize="Large"
+               Margin="0,10,0,0"
+               HorizontalOptions="CenterAndExpand" />
+
+                <StackLayout x:Name="loginForm" Orientation="Horizontal" Margin="0,20,0,0" IsVisible="False">
+                    <Entry Placeholder="Jméno"
+                   WidthRequest="125"
+                   PlaceholderColor="Gray"
                    TextColor="White"
-                   Text="Přihlašte se údajemi k jídelně"
-                   FontSize="Large"
-                   Margin="0,10,0,0"
+                   x:Name="usernameEntry"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
 
-            <StackLayout x:Name="loginForm" Orientation="Horizontal" Margin="0,20,0,0" IsVisible="False">
-                <Entry Placeholder="Jméno"
-                       WidthRequest="125"
-                       PlaceholderColor="Gray"
-                       TextColor="White"
-                       x:Name="usernameEntry"
-                       HorizontalTextAlignment="Center"
-                       VerticalOptions="CenterAndExpand" 
-                       HorizontalOptions="CenterAndExpand" />
+                    <Entry Placeholder="Heslo"
+                   WidthRequest="125"
+                   x:Name="passwordEntry"
+                   IsPassword="True"
+                   PlaceholderColor="Gray"
+                   TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+                </StackLayout>
+                <Grid x:Name="submitForm" IsVisible="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Entry Placeholder="Heslo"
-                       WidthRequest="125"
-                       x:Name="passwordEntry"
-                       IsPassword="True"
-                       PlaceholderColor="Gray"
-                       TextColor="White"
-                       HorizontalTextAlignment="Center"
-                       VerticalOptions="CenterAndExpand" 
-                       HorizontalOptions="CenterAndExpand" />
+                    <Button Text="Login"
+                    Clicked="loginButton_Clicked"
+                    x:Name="loginButton"
+                    VerticalOptions="CenterAndExpand"
+                    BackgroundColor="DarkOrange"
+                    TextColor="Black"
+                    HorizontalOptions="CenterAndExpand"
+                    Grid.Column="1" />
+
+                    <CheckBox x:Name="rememberMe"
+                      Color="DarkOrange"
+                      Grid.Column="2" />
+                    <Label Text="Auto-Login" Grid.ColumnSpan="3" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,40,0" TextColor="White"/>
+                </Grid>
+                <CollectionView x:Name="JidlaView" Margin="5,12,0,0" HorizontalOptions="CenterAndExpand" IsVisible="False" BackgroundColor="Black" ItemTemplate="{StaticResource Jidla}"/>
+                <Button x:Name="LogoutButton" Text="Log out" Clicked="Button_Clicked" IsVisible="False" Background="DarkOrange" TextColor="White" FontAttributes="Bold" BorderColor="Black" CornerRadius="12" Margin="0,0,0,5"/>
             </StackLayout>
-            <Grid x:Name="submitForm" IsVisible="False">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Button Text="Login"
-                        Clicked="loginButton_Clicked"
-                        x:Name="loginButton"
-                        VerticalOptions="CenterAndExpand"
-                        BackgroundColor="DarkOrange"
-                        TextColor="Black"
-                        HorizontalOptions="CenterAndExpand"
-                        Grid.Column="1" />
-
-                <CheckBox x:Name="rememberMe"
-                          Color="DarkOrange"
-                          Grid.Column="2" />
-                <Label Text="Auto-Login" Grid.ColumnSpan="3" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,40,0" TextColor="White"/>
-            </Grid>
-            <CollectionView x:Name="JidlaView" Margin="5,12,0,0" HorizontalOptions="CenterAndExpand" IsVisible="False" BackgroundColor="Black" ItemTemplate="{StaticResource Jidla}"/>
-            <Button x:Name="LogoutButton" Text="Log out" Clicked="Button_Clicked" IsVisible="False" Background="DarkOrange" TextColor="White" FontAttributes="Bold" BorderColor="Black" CornerRadius="12" Margin="0,0,0,5"/>
-        </StackLayout>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>
