@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Text.Json;
 using Project_K.Services;
 using System.Net;
-using Project_K.Models;
 
 namespace Project_K.Views
 {
@@ -27,9 +26,25 @@ namespace Project_K.Views
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    JidlaView.ItemsSource = GetPapu.Jidla;
+                    var errorcode = GetPapu.RefreshJidlo();
+                    switch (errorcode)
+                    {
+                        case "0":
+                            JidlaView.ItemsSource = GetPapu.Jidla;
+                            JidlaView.IsVisible = true;
+                            break;
+                        case "1":
+                            LoginText.IsVisible = true;
+                            loginForm.IsVisible = true;
+                            submitForm.IsVisible = true;
+                            break;
+                        case "2":
+                           goto case "1";
+                        case "3":
+                            DisplayAlert("Error", "Error while loading data", "OK");
+                            break;
+                    }
                 });
-                JidlaView.IsVisible = true;
             }
 
         }
@@ -58,7 +73,7 @@ namespace Project_K.Views
                 SecureStorage.SetAsync("JidelnaUsername", usernameEntry.Text).Wait();
                 SecureStorage.SetAsync("JidelnaPassword", passwordEntry.Text).Wait();
             }
-            Shell.Current.GoToAsync("//JidelnaPage").Wait();
+            Application.Current.MainPage = new AppShell();
         }
         class DataJson
         {

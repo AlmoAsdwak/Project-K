@@ -159,7 +159,6 @@
                     </Frame>
                 </FlexLayout>
             </DataTemplate>
-
             <DataTemplate x:Key="Jidla">
                 <StackLayout Margin="0,0,0,12">
                     <Frame BackgroundColor="DarkOrange" BorderColor="Black" HasShadow="True" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" CornerRadius="12">
@@ -211,18 +210,10 @@
                                     </BindableLayout.ItemTemplate>
                                 </FlexLayout>
                             </ScrollView>
-
                         </StackLayout>
                     </Frame>
                 </StackLayout>
             </DataTemplate>
-
-
-
-
-
-
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>
