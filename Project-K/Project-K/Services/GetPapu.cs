@@ -13,13 +13,13 @@ namespace Project_K.Services
 {
     internal class GetPapu
     {
-        public static ObservableCollection<Models.JidlaModels.Day> Jidla { get; private set; } = new ObservableCollection<Models.JidlaModels.Day>();
+        public static ObservableCollection<JidlaModels.Day> Jidla { get; private set; } = new ObservableCollection<JidlaModels.Day>();
         public static string RefreshJidlo()
         {
             HttpClient client = new HttpClient();
             var data = new { sid = SecureStorage.GetAsync("JidelnaSid").Result };
             var dataJson = JsonSerializer.Serialize(data);
-            var response = client.PostAsync("https://jidelna.farhive.cz/api/v1/Orders", new StringContent(dataJson, System.Text.Encoding.UTF8, "application/json")).Result;
+            var response = client.PostAsync("https://jidelna.farhive.cz/api/v1/Orders", new StringContent(dataJson, Encoding.UTF8, "application/json")).Result;
             if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
                 SecureStorage.Remove("JidelnaSid");
@@ -41,7 +41,7 @@ namespace Project_K.Services
             var dataJson2 = JsonSerializer.Deserialize<JidlaModels.Rootobject>(responseString);
             if (dataJson2 == null) return "3";
 
-            List<Models.JidlaModels.Day> list = dataJson2.days.ToList();
+            List<JidlaModels.Day> list = dataJson2.days.ToList();
             Jidla = new ObservableCollection<JidlaModels.Day>(list);
             return "0";
         }
@@ -52,9 +52,9 @@ namespace Project_K.Services
             if (username == null || password == null)
                 return "1";
             HttpClient client = new HttpClient();
-            var data = new { userId = username, password = password };
+            var data = new { userId = username, password };
             var dataJson = JsonSerializer.Serialize(data);
-            var response = client.PostAsync("https://jidelna.farhive.cz/api/v1/Login", new StringContent(dataJson, System.Text.Encoding.UTF8, "application/json")).Result;
+            var response = client.PostAsync("https://jidelna.farhive.cz/api/v1/Login", new StringContent(dataJson, Encoding.UTF8, "application/json")).Result;
             if (response.StatusCode == HttpStatusCode.Unauthorized)
                 return "2";
             var responseString = response.Content.ReadAsStringAsync().Result;

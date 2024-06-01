@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text.Json;
 using Project_K.Services;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace Project_K.Views
 {
@@ -32,6 +33,7 @@ namespace Project_K.Views
                         case "0":
                             JidlaView.ItemsSource = GetPapu.Jidla;
                             JidlaView.IsVisible = true;
+                            LogoutButton.IsVisible = true;
                             break;
                         case "1":
                             LoginText.IsVisible = true;
@@ -39,7 +41,7 @@ namespace Project_K.Views
                             submitForm.IsVisible = true;
                             break;
                         case "2":
-                           goto case "1";
+                            goto case "1";
                         case "3":
                             DisplayAlert("Error", "Error while loading data", "OK");
                             break;
@@ -98,5 +100,15 @@ namespace Project_K.Views
             public bool ordered { get; set; }
         }
 
+        private async void Button_Clicked(object sender, System.EventArgs e)
+        {
+            var confirmed = await DisplayAlert("Logout Confirmation", "Jste si jisti že se chcete odhlásit?", "Ano", "Ne");
+            if (!confirmed)
+                return;
+            SecureStorage.Remove("JidelnaSid");
+            SecureStorage.Remove("JidelnaUsername");
+            SecureStorage.Remove("JidelnaPassword");
+            Application.Current.MainPage = new AppShell();
+        }
     }
 }
