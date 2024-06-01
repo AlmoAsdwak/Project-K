@@ -13,37 +13,58 @@ namespace Project_K.Services
 {
     internal class GetPapu
     {
+        public static string lasterrorcode = "";
         public static ObservableCollection<JidlaModels.Day> Jidla { get; private set; } = new ObservableCollection<JidlaModels.Day>();
+        static GetPapu() => RefreshJidlo();
         public static string RefreshJidlo()
         {
             HttpClient client = new HttpClient();
-            var data = new { sid = SecureStorage.GetAsync("JidelnaSid").Result };
-            var dataJson = JsonSerializer.Serialize(data);
-            var response = client.PostAsync("https://jidelna.farhive.cz/api/v1/Orders", new StringContent(dataJson, Encoding.UTF8, "application/json")).Result;
-            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            try
             {
-                SecureStorage.Remove("JidelnaSid");
-                var errorcode = LoginJidlo();
-                switch(errorcode)
+                var data = new { sid = SecureStorage.GetAsync("JidelnaSid").Result };
+                var dataJson = JsonSerializer.Serialize(data);
+                var response = client.PostAsync("https://jidelna.farhive.cz/api/v1/Orders", new StringContent(dataJson, Encoding.UTF8, "application/json")).Result;
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    case "0":
-                        var exitcode = RefreshJidlo();
-                        return exitcode;
-                    case "1":
-                        return "1";
-                    case "2":
-                        SecureStorage.Remove("JidelnaUsername");
-                        SecureStorage.Remove("JidelnaPassword");
-                        return "2";
+                    SecureStorage.Remove("JidelnaSid");
+                    var errorcode = LoginJidlo();
+                    switch (errorcode)
+                    {
+                        case "0":
+                            var exitcode = RefreshJidlo();
+                            lasterrorcode = "0";
+                            return exitcode;
+                        case "1":
+                            lasterrorcode = "1";
+                            return "1";
+                        case "2":
+                            SecureStorage.Remove("JidelnaUsername");
+                            SecureStorage.Remove("JidelnaPassword");
+                            lasterrorcode = "2";
+                            return "2";
+                    }
                 }
-            }
-            var responseString = response.Content.ReadAsStringAsync().Result;
-            var dataJson2 = JsonSerializer.Deserialize<JidlaModels.Rootobject>(responseString);
-            if (dataJson2 == null) return "3";
+                var responseString = response.Content.ReadAsStringAsync().Result;
+                var dataJson2 = JsonSerializer.Deserialize<JidlaModels.Rootobject>(responseString);
+                if (dataJson2 == null)
+                {
+                    lasterrorcode = "3";
+                    return "3";
+                }
 
-            List<JidlaModels.Day> list = dataJson2.days.ToList();
-            Jidla = new ObservableCollection<JidlaModels.Day>(list);
-            return "0";
+                List<JidlaModels.Day> list = dataJson2.days.ToList();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Jidla = new ObservableCollection<JidlaModels.Day>(list);
+                });
+                lasterrorcode = "0";
+                return "0";
+            }
+            catch (System.Exception)
+            {
+                lasterrorcode = "3";
+                return "3";
+            }
         }
         public static string LoginJidlo()
         {

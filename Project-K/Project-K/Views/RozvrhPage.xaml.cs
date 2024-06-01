@@ -18,21 +18,17 @@ namespace Project_K.Views
             InitializeComponent();
             viewModel = new ViewModel();
             BindingContext = viewModel;
-            GetRozvrh.RefreshRozvrh();
             Day.Text = GetDate();
             RozvrhRefresh.Command = new Command(() =>
             {
                 GetRozvrh.RefreshRozvrh();
                 Day.Text = GetDate();
-                RozvrhCollectionView.ItemsSource = GetRozvrh.Rozvrh;
                 RozvrhRefresh.IsRefreshing = false;
             });
 
         }
         protected override void OnDisappearing()
         {
-            base.OnDisappearing();
-            MessagingCenter.Unsubscribe<object, string>(this, "DisplayAlert");
             viewModel.IsLoading = false;
         }
         [Obsolete]
@@ -61,7 +57,6 @@ namespace Project_K.Views
             viewModel.IsLoading = true;
             Days++;
             await Task.Run(() => GetRozvrh.RefreshRozvrh());
-            RozvrhCollectionView.ItemsSource = GetRozvrh.Rozvrh;
             Day.Text = GetDate();
             viewModel.IsLoading = false;
         }
@@ -70,7 +65,6 @@ namespace Project_K.Views
             viewModel.IsLoading = true;
             Days--;
             await Task.Run(() => GetRozvrh.RefreshRozvrh());
-            RozvrhCollectionView.ItemsSource = GetRozvrh.Rozvrh;
             Day.Text = GetDate();
             viewModel.IsLoading = false;
         }

@@ -12,7 +12,8 @@ namespace Project_K.Services
 {
     public static class GetRozvrh
     {
-        public static ObservableCollection<Cell> Rozvrh { get; private set; } = new ObservableCollection<Cell>();
+        public static ObservableCollection<Cell> Rozvrh { get; private set; } = new ObservableCollection<Cell>(); 
+        static GetRozvrh() => RefreshRozvrh();
 
         public static void RefreshRozvrh()
         {
@@ -59,6 +60,7 @@ namespace Project_K.Services
                         tempRozvrh.Add(tmp);
 
                     }
+
                     foreach (var cell in tempRozvrh.OrderBy(x=>x.UnformattedStartTime))
                         Rozvrh.Add(cell);
                 });

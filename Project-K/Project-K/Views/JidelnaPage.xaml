@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project_K.Views.JidelnaPage"
+             xmlns:data="clr-namespace:Project_K.Services"
              Title="Jídelna"
              BackgroundColor="Black">
     <ContentPage.Content>
@@ -56,7 +57,7 @@
                       Grid.Column="2" />
                     <Label Text="Auto-Login" Grid.ColumnSpan="3" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,40,0" TextColor="White"/>
                 </Grid>
-                <CollectionView x:Name="JidlaView" Margin="5,12,0,0" HorizontalOptions="CenterAndExpand" IsVisible="False" BackgroundColor="Black" ItemTemplate="{StaticResource Jidla}"/>
+                <CollectionView x:Name="JidlaView" Margin="5,12,0,0" HorizontalOptions="CenterAndExpand" IsVisible="False" BackgroundColor="Black" ItemsSource="{x:Static data:GetPapu.Jidla}" ItemTemplate="{StaticResource Jidla}"/>
                 <Button x:Name="LogoutButton" Text="Log out" Clicked="Button_Clicked" IsVisible="False" Background="DarkOrange" TextColor="White" FontAttributes="Bold" BorderColor="Black" CornerRadius="12" Margin="0,0,0,5"/>
             </StackLayout>
         </RefreshView>

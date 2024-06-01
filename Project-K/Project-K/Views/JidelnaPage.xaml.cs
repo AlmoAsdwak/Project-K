@@ -22,7 +22,6 @@ namespace Project_K.Views
             JidelnaRefresh.Command = new Command(() =>
             {
                 GetPapu.RefreshJidlo();
-                JidlaView.ItemsSource = GetPapu.Jidla;
                 JidelnaRefresh.IsRefreshing = false;
             });
             var JidelnaSid = SecureStorage.GetAsync("JidelnaSid").Result;
@@ -37,11 +36,9 @@ namespace Project_K.Views
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    var errorcode = GetPapu.RefreshJidlo();
-                    switch (errorcode)
+                    switch (GetPapu.lasterrorcode)
                     {
                         case "0":
-                            JidlaView.ItemsSource = GetPapu.Jidla;
                             JidlaView.IsVisible = true;
                             LogoutButton.IsVisible = true;
                             break;
