@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Text.Json;
 using Project_K.Services;
 using System.Net;
-using System.Threading.Tasks;
 using Kyberna_k.ViewModel;
 
 namespace Project_K.Views

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Project_K.Models
+﻿namespace Project_K.Models
 {
     internal class JidlaModels
     {
