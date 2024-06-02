@@ -51,12 +51,7 @@ namespace Project_K.Services
                     lasterrorcode = "3";
                     return "3";
                 }
-
-                List<JidlaModels.Day> list = dataJson2.days.ToList();
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    Jidla = new ObservableCollection<JidlaModels.Day>(list);
-                });
+                Jidla = new ObservableCollection<JidlaModels.Day>(dataJson2.days.ToList());
                 lasterrorcode = "0";
                 return "0";
             }

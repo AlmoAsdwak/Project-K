@@ -1,16 +1,13 @@
 ﻿using Kyberna_k.ViewModel;
 using Project_K.Services;
 using System;
-using System.Net.Http;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Project_K.Views
 {
     public partial class RozvrhPage : ContentPage
     {
-        readonly static HttpClient client = new HttpClient();
         public static int Days = 0;
         private ViewModel viewModel;
         public RozvrhPage()

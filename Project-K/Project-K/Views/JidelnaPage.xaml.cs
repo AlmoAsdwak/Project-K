@@ -21,7 +21,25 @@ namespace Project_K.Views
             BindingContext = viewModel;
             JidelnaRefresh.Command = new Command(() =>
             {
-                GetPapu.RefreshJidlo();
+                var errocde = GetPapu.RefreshJidlo();
+                switch (errocde)
+                {
+                    case "0":
+                        JidlaView.ItemsSource = GetPapu.Jidla;
+                        JidlaView.IsVisible = true;
+                        LogoutButton.IsVisible = true;
+                        break;
+                    case "1":
+                        LoginText.IsVisible = true;
+                        loginForm.IsVisible = true;
+                        submitForm.IsVisible = true;
+                        break;
+                    case "2":
+                        goto case "1";
+                    case "3":
+                        DisplayAlert("Error", "Error while loading data", "OK");
+                        break;
+                }
                 JidelnaRefresh.IsRefreshing = false;
             });
             var JidelnaSid = SecureStorage.GetAsync("JidelnaSid").Result;
@@ -34,26 +52,25 @@ namespace Project_K.Views
             }
             else
             {
-                Device.BeginInvokeOnMainThread(() =>
+                JidlaView.ItemsSource = GetPapu.Jidla;
+                switch (GetPapu.lasterrorcode)
                 {
-                    switch (GetPapu.lasterrorcode)
-                    {
-                        case "0":
-                            JidlaView.IsVisible = true;
-                            LogoutButton.IsVisible = true;
-                            break;
-                        case "1":
-                            LoginText.IsVisible = true;
-                            loginForm.IsVisible = true;
-                            submitForm.IsVisible = true;
-                            break;
-                        case "2":
-                            goto case "1";
-                        case "3":
-                            DisplayAlert("Error", "Error while loading data", "OK");
-                            break;
-                    }
-                });
+                    case "0":
+
+                        JidlaView.IsVisible = true;
+                        LogoutButton.IsVisible = true;
+                        break;
+                    case "1":
+                        LoginText.IsVisible = true;
+                        loginForm.IsVisible = true;
+                        submitForm.IsVisible = true;
+                        break;
+                    case "2":
+                        goto case "1";
+                    case "3":
+                        DisplayAlert("Error", "Error while loading data", "OK");
+                        break;
+                }
             }
 
         }
