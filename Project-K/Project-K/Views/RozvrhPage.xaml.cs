@@ -30,6 +30,13 @@ namespace Project_K.Views
             base.OnAppearing();
             Day.Text = GetDate();
         }
+        protected override bool OnBackButtonPressed()
+        {
+            Days = 0;
+            Task.Run(() => GetRozvrh.RefreshRozvrh());
+            Day.Text = GetDate();
+            return true;
+        }
         protected override void OnDisappearing() => viewModel.IsLoading = false;
         async void OnPrivacyPolicyButtonClicked(object sender, EventArgs e) => await Launcher.OpenAsync("https://whoisalmo.cz/soukromi");
 
