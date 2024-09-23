@@ -12,15 +12,13 @@ namespace Project_K.Services
 {
     public static class GetRozvrh
     {
-        public static ObservableCollection<Cell> Rozvrh { get; private set; } = new ObservableCollection<Cell>(); 
+        public static ObservableCollection<Cell> Rozvrh { get; private set; } = new ObservableCollection<Cell>();
         static GetRozvrh() => RefreshRozvrh();
-
         public static void RefreshRozvrh()
         {
-            HttpClient client = new HttpClient();
             try
             {
-                Rozvrh.Clear();
+                HttpClient client = new HttpClient();
                 var storage = SecureStorage.GetAsync("Id").Result;
                 int id = Convert.ToInt32(storage);
                 DateTime date = DateTime.Now.AddDays(Views.RozvrhPage.Days);
@@ -44,13 +42,13 @@ namespace Project_K.Services
                         cell.TimeTo = cell.UnformattedStartTime.AddMinutes(45).ToString("HH:mm");
                         tempRozvrh.Add(cell);
                     }
-                    int startCount = tempRozvrh.Count-1;
-                    for (var i = 0; i < startCount; i++)
+
+                    for (var i = 0; i < tempRozvrh.Count - 1; i++)
                     {
-                        var item = TimeSpan.Parse(tempRozvrh[i].TimeTo);
-                        var itemnext = TimeSpan.Parse(tempRozvrh[i + 1].FormattedStartTime);
-                        var compare = itemnext.TotalMinutes - item.TotalMinutes;
-                        if (compare < 35) continue;
+                        var thisHour = TimeSpan.Parse(tempRozvrh[i].TimeTo);
+                        var nextHour = TimeSpan.Parse(tempRozvrh[i + 1].FormattedStartTime);
+                        var comparasion = nextHour.TotalMinutes - thisHour.TotalMinutes;
+                        if (comparasion <= 35) continue;
                         var tmp = new Cell
                         {
                             UnformattedStartTime = tempRozvrh[i].UnformattedStartTime.AddMinutes(45),
@@ -58,10 +56,9 @@ namespace Project_K.Services
                             Subject = "Volno"
                         };
                         tempRozvrh.Add(tmp);
-
                     }
 
-                    foreach (var cell in tempRozvrh.OrderBy(x=>x.UnformattedStartTime))
+                    foreach (var cell in tempRozvrh.OrderBy(x => x.UnformattedStartTime))
                         Rozvrh.Add(cell);
                 });
             }

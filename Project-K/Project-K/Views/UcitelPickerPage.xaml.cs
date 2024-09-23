@@ -16,8 +16,10 @@ namespace Project_K.Views
         public UcitelPickerPage()
         {
             InitializeComponent();
+            Day.Text = RozvrhPage.GetDate();
             viewModel = new ViewModel();
             BindingContext = viewModel;
+            Device.BeginInvokeOnMainThread(() => TeacherView.ItemsSource = GetTeacher.Teacher);
         }
         protected override bool OnBackButtonPressed()
         {
@@ -30,6 +32,7 @@ namespace Project_K.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            Day.Text = RozvrhPage.GetDate();
             ResetView();
         }
         private void ResetView()
@@ -45,78 +48,102 @@ namespace Project_K.Views
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {
+            string selectedItem = PickerOfTeachers.SelectedItem as string;
+            if (selectedItem == null) return;
             viewModel.IsLoading = true;
-            var selectedItem = PickerOfTeachers.SelectedItem as string;
-            if (selectedItem != null)
-            {
-                Dictionary<string, string> teachers = new Dictionary<string, string>
+            Dictionary<string, string> teachers = new Dictionary<string, string>
                 {
-                    { "Jan Lang", "LA" },
-                    { "Richard Rejthar", "RE" },
-                    { "Matěj Lang", "LN" },
-                    { "Libor Beneš", "BE" },
-                    { "Michaela Ducháčková", "DU" },
-                    { "Milan Hloušek", "HS" },
-                    { "Jaroslav Hývl", "HY" },
-                    { "Dagmar Bursová", "BS" },
-                    { "Zlata Karpíšková", "KR" },
-                    { "Eva Kuntová", "KT" },
-                    { "Roman Loskot", "LO" },
-                    { "Jaroslav Maťátko", "MA" },
-                    { "Martin Mercl", "MC" },
-                    { "Štěpán Mach", "MH" },
-                    { "Josef Matějus", "MJ" },
-                    { "Martin Markoš", "MR" },
-                    { "Ilona Mayerová", "MV" },
-                    { "Jiří Petera", "PE" },
-                    { "Miloslav Penc", "PN" },
-                    { "Lucie Porter", "PO" },
-                    { "David Podzimek", "PZ" },
-                    { "Jana Radoňová", "RA" },
-                    { "Igor Ročín", "RO" },
-                    { "Jiří Špičan", "SP" },
-                    { "Simona Trnková", "TK" },
-                    { "Tomáš Záhořík", "TR" },
-                    { "Pavel Trnka", "TZ" },
-                    { "Josef Zelba", "ZE" },
-                    { "Šárka Žemličková", "ZM" },
-                    { "Shane Hertnon", "CI" },
-                    { "Michal Janko", "JA" },
-                    { "Tadeáš Němec", "NE" },
-                    { "Michal Macinka", "MI" },
-
+                    { "Beneš Libor", "BE" },
+                    { "Bezstarosti Pavel", "PB" },
+                    { "Bursová Dagmar", "BS" },
+                    { "Ducháčková Michaela", "DU" },
+                    { "Filip Nathaniel", "NF" },
+                    { "Hertnon Shane", "CI" },
+                    { "Hloušek Jiří", "HJ" },
+                    { "Hloušek Milan", "HS" },
+                    { "Hývl Jaroslav", "HY" },
+                    { "Janko Michal", "JA" },
+                    { "Karpíšková Zlata", "KR" },
+                    { "Kuntová Eva", "KT" },
+                    { "Lang Matěj", "LN" },
+                    { "Lang Jan", "LA" },
+                    { "Lenc Tomáš", "LT" },
+                    { "Loskot Roman", "LO" },
+                    { "Mach Štěpán", "MH" },
+                    { "Markoš Martin", "MR" },
+                    { "Matějus Josef", "MJ" },
+                    { "Maťátko Jaroslav", "MA" },
+                    { "Mayerová Ilona", "MV" },
+                    { "Mercl Martin", "MC" },
+                    { "Macinka Michal", "MI" },
+                    { "Tichý Miroslav", "TI" },
+                    { "Němec Tadeáš", "NE" },
+                    { "Petera Jiří", "PE" },
+                    { "Petera Ondřej", "OP" },
+                    { "Penc Miroslav", "PN" },
+                    { "Podzimek David", "PZ" },
+                    { "Porter Lucie", "PO" },
+                    { "Radoňová Jana", "RA" },
+                    { "Rejthar Richard", "RE" },
+                    { "Ročín Igor", "RO" },
+                    { "Šolc Miloš", "MS" },
+                    { "Špičan Jiří", "SP" },
+                    { "Trnková Simona", "TK" },
+                    { "Trnka Pavel", "TR" },
+                    { "Zelba Josef", "ZE" },
+                    { "Záhořík Tomáš", "TZ" },
+                    { "Žemličková Šárka", "ZM" },
+                    { "Ženíšková Eva", "EZ" }
                 };
-                bool selection = teachers.TryGetValue(selectedItem, out teacherRealName);
-                if (!selection)
-                {
-                    await DisplayAlert("Něco je špatně", $"Nenašli jsme učitele, prosím kontaktujte vývojáře", "OK");
-                    ResetView();
-                    return;
-                }
-                string result = await Task.Run(() => GetTeacher.TeacherRefresh());
-                if (result != "good")
-                {
-                    if (result == "noteacherselected")
-                        await DisplayAlert("Varování", $"Teacher je null neco se stalo idk wtf pls posli mi to dik<3", "OK");
-                    if (result == "ucitelneuci")
-                        await DisplayAlert("Varování", $"Učitel dneska neučí", "OK");
-                    if (result == "nointernet")
-                        await DisplayAlert("Varování", $"Není připojení k internetu", "OK");
-                    ResetView();
-                    return;
-                }
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    TeacherView.ItemsSource = GetTeacher.Teacher;
-                });
-                PickerOfTeachers.IsVisible = false;
-                AcceptButton.IsVisible = false;
-                label1.IsVisible = false;
-                TeacherView.IsVisible = true;
-                TeacherName.Text = selectedItem;
-                TeacherName.IsVisible = true;
-                viewModel.IsLoading = false;
+
+            if (!teachers.TryGetValue(selectedItem, out teacherRealName))
+            {
+                await DisplayAlert("Něco je špatně", $"Nenašli jsme učitele, prosím kontaktujte vývojáře", "OK");
+                ResetView();
+                return;
             }
+            switch (await Task.Run(() => GetTeacher.TeacherRefresh()))
+            {
+                case 0:
+                    PickerOfTeachers.IsVisible = false;
+                    AcceptButton.IsVisible = false;
+                    label1.IsVisible = false;
+                    TeacherView.IsVisible = true;
+                    TeacherName.Text = selectedItem;
+                    TeacherName.IsVisible = true;
+                    viewModel.IsLoading = false;
+                    break;
+                case 1:
+                    await DisplayAlert("Varování", $"Teacher je null neco se stalo", "OK");
+                    ResetView();
+                    break;
+                case 2:
+                    await DisplayAlert("Varování", $"Učitel dneska neučí", "OK");
+                    ResetView();
+                    break;
+                case 3:
+                    await DisplayAlert("Varování", $"Není připojení k internetu", "OK");
+                    ResetView();
+                    break;
+
+            }
+        }
+
+        private async void ButtonAdder(object sender, EventArgs e)
+        {
+            viewModel.IsLoading = true;
+            RozvrhPage.Days++;
+            Day.Text = RozvrhPage.GetDate();
+            await Task.Run(() => GetTeacher.TeacherRefresh());
+            viewModel.IsLoading = false;
+        }
+        private async void ButtonSubtracter(object sender, EventArgs e)
+        {
+            viewModel.IsLoading = true;
+            RozvrhPage.Days--;
+            Day.Text = RozvrhPage.GetDate();
+            await Task.Run(() => GetTeacher.TeacherRefresh());
+            viewModel.IsLoading = false;
         }
     }
 }

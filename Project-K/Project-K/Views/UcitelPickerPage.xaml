@@ -1,9 +1,11 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Project_K.Views.UcitelPickerPage"
+             Title="Kde je učitel"
+             xmlns:vm="clr-namespace:Kyberna_k.ViewModel"
+             xmlns:data="clr-namespace:Project_K.Services"
              BackgroundColor="Black"
-              xmlns:vm="clr-namespace:Kyberna_k.ViewModel"
-             Title="Kde je učitel">
+             x:Class="Project_K.Views.UcitelPickerPage">
     <ContentPage.BindingContext>
         <vm:ViewModel />
     </ContentPage.BindingContext>
@@ -18,8 +20,13 @@
             </Grid>
             <ScrollView Grid.Row="0">
                 <StackLayout Orientation="Vertical" Padding="30,30,30,24" Spacing="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Button HorizontalOptions="StartAndExpand" Clicked="ButtonSubtracter" Padding="0,0,0,12" Text="⟵" WidthRequest="50" TextColor="White" BackgroundColor="Black" CornerRadius="15" FontSize="30"/>
+                        <Label x:Name="Day" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" Text="Sobota" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="White" FontSize="Title"/>
+                        <Button HorizontalOptions="EndAndExpand" Clicked="ButtonAdder" Padding="0,0,0,12" Text="⟶" WidthRequest="50" TextColor="White" BackgroundColor="Black" CornerRadius="15" FontSize="30" />
+                    </StackLayout>
                     <Label x:Name="TeacherName" Text="" FontSize="Title" IsVisible="False" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White"></Label>
-                    <CollectionView x:Name="TeacherView" HorizontalOptions="CenterAndExpand" IsVisible="False" BackgroundColor="Black" ItemTemplate="{StaticResource Teacher}"/>
+                    <CollectionView x:Name="TeacherView" HorizontalOptions="CenterAndExpand" BackgroundColor="Black" IsVisible="False" ItemsSource="{x:Static data:GetTeacher.Teacher}" ItemTemplate="{StaticResource Teacher}"/>
                 </StackLayout>
             </ScrollView>
             <StackLayout Grid.Row="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
@@ -27,39 +34,47 @@
                 <Picker x:Name="PickerOfTeachers" Title="Vyber si učitele" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" WidthRequest="200" TextColor="White" TitleColor="White">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
-                            <x:String>Matěj Lang</x:String>
-                            <x:String>David Podzimek</x:String>
-                            <x:String>Milan Hloušek</x:String>
-                            <x:String>Michaela Ducháčková</x:String>
-                            <x:String>Miloslav Penc</x:String>
-                            <x:String>Josef Matějus</x:String>
-                            <x:String>Dagmar Bursová</x:String>
-                            <x:String>Jan Lang</x:String>
-                            <x:String>Richard Rejthar</x:String>
-                            <x:String>Libor Beneš</x:String>
-                            <x:String>Jaroslav Hývl</x:String>
-                            <x:String>Zlata Karpíšková</x:String>
-                            <x:String>Eva Kuntová</x:String>
-                            <x:String>Roman Loskot</x:String>
-                            <x:String>Jaroslav Maťátko</x:String>
-                            <x:String>Martin Mercl</x:String>
-                            <x:String>Štěpán Mach</x:String>
-                            <x:String>Martin Markoš</x:String>
-                            <x:String>Ilona Mayerová</x:String>
-                            <x:String>Jiří Petera</x:String>
-                            <x:String>Josef Zelba</x:String>
-                            <x:String>Lucie Porter</x:String>
-                            <x:String>Jana Radoňová</x:String>
-                            <x:String>Igor Ročín</x:String>
-                            <x:String>Jiří Špičan</x:String>
-                            <x:String>Simona Trnková</x:String>
-                            <x:String>Tomáš Záhořík</x:String>
-                            <x:String>Pavel Trnka</x:String>
-                            <x:String>Šárka Žemličková</x:String>
-                            <x:String>Shane Hertnon</x:String>
-                            <x:String>Michal Janko</x:String>
-                            <x:String>Tadeáš Němec</x:String>
-                            <x:String>Michal Macinka</x:String>
+                            <x:String>Beneš Libor</x:String>
+                            <x:String>Bezstarosti Pavel</x:String>
+                            <x:String>Bursová Dagmar</x:String>
+                            <x:String>Ducháčková Michaela</x:String>
+                            <x:String>Filip Nathaniel</x:String>
+                            <x:String>Hertnon Shane</x:String>
+                            <x:String>Hloušek Jiří</x:String>
+                            <x:String>Hloušek Milan</x:String>
+                            <x:String>Hývl Jaroslav</x:String>
+                            <x:String>Janko Michal</x:String>
+                            <x:String>Karpíšková Zlata</x:String>
+                            <x:String>Kuntová Eva</x:String>
+                            <x:String>Lang Matěj</x:String>
+                            <x:String>Lang Jan</x:String>
+                            <x:String>Lenc Tomáš</x:String>
+                            <x:String>Loskot Roman</x:String>
+                            <x:String>Mach Štěpán</x:String>
+                            <x:String>Markoš Martin</x:String>
+                            <x:String>Matějus Josef</x:String>
+                            <x:String>Maťátko Jaroslav</x:String>
+                            <x:String>Mayerová Ilona</x:String>
+                            <x:String>Mercl Martin</x:String>
+                            <x:String>Macinka Michal</x:String>
+                            <x:String>Tichý Miroslav</x:String>
+                            <x:String>Němec Tadeáš</x:String>
+                            <x:String>Petera Jiří</x:String>
+                            <x:String>Petera Ondřej</x:String>
+                            <x:String>Penc Miroslav</x:String>
+                            <x:String>Podzimek David</x:String>
+                            <x:String>Porter Lucie</x:String>
+                            <x:String>Radoňová Jana</x:String>
+                            <x:String>Rejthar Richard</x:String>
+                            <x:String>Ročín Igor</x:String>
+                            <x:String>Šolc Miloš</x:String>
+                            <x:String>Špičan Jiří</x:String>
+                            <x:String>Trnková Simona</x:String>
+                            <x:String>Trnka Pavel</x:String>
+                            <x:String>Zelba Josef</x:String>
+                            <x:String>Záhořík Tomáš</x:String>
+                            <x:String>Žemličková Šárka</x:String>
+                            <x:String>Ženíšková Eva</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>

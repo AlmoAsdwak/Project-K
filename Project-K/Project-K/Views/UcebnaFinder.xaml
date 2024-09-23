@@ -21,6 +21,11 @@
             </Grid>
             <ScrollView Grid.Row="0">
                 <StackLayout Orientation="Vertical" Padding="30,30,30,24" Spacing="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Button x:Name="SubBut" HorizontalOptions="StartAndExpand" Clicked="ButtonSubtracter" Padding="0,0,0,12" Text="⟵" WidthRequest="50" TextColor="White" BackgroundColor="Black" CornerRadius="15" FontSize="30"/>
+                        <Label x:Name="Day" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" Text="Sobota" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="White" FontSize="Title"/>
+                        <Button x:Name="AddBut" HorizontalOptions="EndAndExpand" Clicked="ButtonAdder" Padding="0,0,0,12" Text="⟶" WidthRequest="50" TextColor="White" BackgroundColor="Black" CornerRadius="15" FontSize="30" />
+                    </StackLayout>
                     <Label x:Name="MainLabel" Text="Volné učebny:" FontSize="Title" IsVisible="False" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White"/>
                     <CollectionView x:Name="ClassesView" HorizontalOptions="CenterAndExpand" IsVisible="False" BackgroundColor="Black" ItemTemplate="{StaticResource Ucebna}" ItemsSource="{x:Static data:GetClassrooms.Classes}"/>
                 </StackLayout>

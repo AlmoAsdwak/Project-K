@@ -88,7 +88,7 @@
                                 HorizontalOptions="Start"
                                 FontSize="20"
                                 FontFamily="Khyay-Regular.ttf#Khyay-Regular"
-                                Text="{Binding SubjectName}"
+                                Text="{Binding Subject}"
                                 FontAttributes="Bold"
                                 Margin="10,0,0,0" />
                             <StackLayout HorizontalOptions="End" VerticalOptions="CenterAndExpand">
@@ -131,7 +131,7 @@
                             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Vertical">
                                 <Label TextColor="White"
                                        VerticalTextAlignment="Center"
-                                       Text="{Binding ClassesAsString}"
+                                       Text="{Binding GroupName}"
                                        HorizontalOptions="CenterAndExpand"
                                        FontAttributes="Bold"
                                        FontSize="11"

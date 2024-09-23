@@ -10,15 +10,9 @@ namespace Project_K.Models
     {
         private DateTime _startTime;
         public string ClassRoom { get; set; }
-        public string SubjectName { get; set; }
-        public string StudyGroupName { get; set; }
-        public string ClassesAsString
-        {
-            get { return string.Join(", ", this.Classes); }
-        }
-
-        public string[] Classes { get; set; }
-        public string Time
+        public string Subject { get; set; }
+        public string GroupName { get; set; }
+        public string StartTime
         {
             get => _startTime.ToString("HH:mm:ss");
             set
@@ -27,6 +21,7 @@ namespace Project_K.Models
                     _startTime = startTime;
             }
         }
+        public string MeetUrl { get; set; }
         public string Teacher { get; set; }
         public string FormattedStartTime => _startTime.ToString("HH:mm");
         public string TimeTo => _startTime.AddMinutes(45).ToString("HH:mm");

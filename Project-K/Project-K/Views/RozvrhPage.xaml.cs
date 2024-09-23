@@ -2,6 +2,7 @@
 using Project_K.Services;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Project_K.Views
@@ -24,19 +25,17 @@ namespace Project_K.Views
             });
 
         }
-        protected override void OnDisappearing()
+        protected override void OnAppearing()
         {
-            viewModel.IsLoading = false;
+            base.OnAppearing();
+            Day.Text = GetDate();
         }
-        [Obsolete]
-        void OnPrivacyPolicyButtonClicked(object sender, EventArgs e)
+        protected override void OnDisappearing() => viewModel.IsLoading = false;
+        async void OnPrivacyPolicyButtonClicked(object sender, EventArgs e) => await Launcher.OpenAsync("https://whoisalmo.cz/soukromi");
+
+        public static string GetDate()
         {
-            Device.OpenUri(new Uri("http://whoisalmo.cz/soukromi"));
-        }
-        private string GetDate()
-        {
-            DayOfWeek now = DateTime.Now.AddDays(Days).DayOfWeek;
-            switch (now)
+            switch (DateTime.Now.AddDays(Days).DayOfWeek)
             {
                 case DayOfWeek.Monday: return "Pondělí";
                 case DayOfWeek.Tuesday: return "Úterý";

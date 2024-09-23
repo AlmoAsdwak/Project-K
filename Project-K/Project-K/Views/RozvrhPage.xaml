@@ -26,7 +26,7 @@
                         <Label x:Name="Day" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" Text="Sobota" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="White" FontSize="Title"/>
                         <Button HorizontalOptions="EndAndExpand" Clicked="ButtonAdder" Padding="0,0,0,12" Text="⟶" WidthRequest="50" TextColor="White" BackgroundColor="Black" CornerRadius="15" FontSize="30" />
                     </StackLayout>
-                    <CollectionView HorizontalOptions="CenterAndExpand" x:Name="RozvrhCollectionView" Background="Black" ItemsSource="{x:Static data:GetRozvrh.Rozvrh}" ItemTemplate="{StaticResource Rozvrh}"/>
+                    <CollectionView x:Name="RozvrhCollectionView" HorizontalOptions="CenterAndExpand" Background="Black" ItemsSource="{x:Static data:GetRozvrh.Rozvrh}" ItemTemplate="{StaticResource Rozvrh}"/>
                     <Button x:Name="PrivacyPolicyButton" Text="Zásady ochrany soukromí" Clicked="OnPrivacyPolicyButtonClicked"  BackgroundColor="DarkOrange" TextColor="White" FontSize="20" CornerRadius="20" FontFamily="Khyay-Regular.ttf#Khyay-Regular" FontAttributes="Bold"/>
                 </StackLayout>
             </ScrollView>
