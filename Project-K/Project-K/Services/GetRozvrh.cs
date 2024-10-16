@@ -48,7 +48,7 @@ namespace Project_K.Services
                         var thisHour = TimeSpan.Parse(tempRozvrh[i].TimeTo);
                         var nextHour = TimeSpan.Parse(tempRozvrh[i + 1].FormattedStartTime);
                         var comparasion = nextHour.TotalMinutes - thisHour.TotalMinutes;
-                        if (comparasion <= 35) continue;
+                        if (comparasion <= 25) continue;
                         var tmp = new Cell
                         {
                             UnformattedStartTime = tempRozvrh[i].UnformattedStartTime.AddMinutes(45),

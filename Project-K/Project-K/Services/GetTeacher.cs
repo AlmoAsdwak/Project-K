@@ -26,19 +26,17 @@ namespace Project_K.Services
                 if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
                     return 2;
                 HttpClient client = new HttpClient();
-                var data = new { teacherAbbreviation = teacher, dateTime = date };
+                var data = new { teacherAbbreviation = teacher, dateTime = date.Date };
                 var dataJson = JsonSerializer.Serialize(data);
                 var response = client.PostAsync("https://sis.ssakhk.cz/api/v1/getTimeTableByTeacherAbbreviation",
                 new StringContent(dataJson, Encoding.UTF8, "application/json")).Result;
                 var responseString = response.Content.ReadAsStringAsync().Result;
-                if (responseString == "[]")
+                if (responseString == null)
                     return 2;
                 var dataJson2 = JsonSerializer.Deserialize<TeacherDatas>(responseString, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    foreach (var item in dataJson2.Cells.OrderBy(cell => cell.FormattedStartTime))
-                        Teacher.Add(item);
-                });
+
+                foreach (var item in dataJson2.Cells.OrderBy(cell => cell.FormattedStartTime))
+                    Teacher.Add(item);
 
                 return 0;
             }

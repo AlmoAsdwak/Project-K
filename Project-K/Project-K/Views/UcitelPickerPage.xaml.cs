@@ -19,7 +19,6 @@ namespace Project_K.Views
             Day.Text = RozvrhPage.GetDate();
             viewModel = new ViewModel();
             BindingContext = viewModel;
-            Device.BeginInvokeOnMainThread(() => TeacherView.ItemsSource = GetTeacher.Teacher);
         }
         protected override bool OnBackButtonPressed()
         {
@@ -37,6 +36,7 @@ namespace Project_K.Views
         }
         private void ResetView()
         {
+            viewModel.IsLoading = true;
             PickerOfTeachers.IsVisible = true;
             AcceptButton.IsVisible = true;
             label1.IsVisible = true;
@@ -105,6 +105,10 @@ namespace Project_K.Views
             switch (await Task.Run(() => GetTeacher.TeacherRefresh()))
             {
                 case 0:
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        TeacherView.ItemsSource = GetTeacher.Teacher;
+                    });
                     PickerOfTeachers.IsVisible = false;
                     AcceptButton.IsVisible = false;
                     label1.IsVisible = false;
