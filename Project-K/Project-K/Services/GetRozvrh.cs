@@ -1,5 +1,6 @@
 ﻿using Project_K.Models;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
@@ -42,21 +43,24 @@ namespace Project_K.Services
                         cell.TimeTo = cell.UnformattedStartTime.AddMinutes(45).ToString("HH:mm");
                         tempRozvrh.Add(cell);
                     }
-
+                    List<Cell> pauses = new List<Cell>();
                     for (var i = 0; i < tempRozvrh.Count - 1; i++)
                     {
                         var thisHour = TimeSpan.Parse(tempRozvrh[i].TimeTo);
                         var nextHour = TimeSpan.Parse(tempRozvrh[i + 1].FormattedStartTime);
                         var comparasion = nextHour.TotalMinutes - thisHour.TotalMinutes;
-                        if (comparasion <= 25) continue;
+                        if (comparasion < 25) continue;
                         var tmp = new Cell
                         {
                             UnformattedStartTime = tempRozvrh[i].UnformattedStartTime.AddMinutes(45),
                             TimeTo = tempRozvrh[i + 1].FormattedStartTime,
                             Subject = "Volno"
                         };
-                        tempRozvrh.Add(tmp);
+                        pauses.Add(tmp);
                     }
+                    foreach (var item in pauses)
+                        tempRozvrh.Add(item);
+
 
                     foreach (var cell in tempRozvrh.OrderBy(x => x.UnformattedStartTime))
                         Rozvrh.Add(cell);
