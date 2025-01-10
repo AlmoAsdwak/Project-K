@@ -12,48 +12,7 @@ namespace Project_K.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UcitelPickerPage : ContentPage
     {
-        public static string teacherRealName;
-        private ViewModel viewModel;
-        public UcitelPickerPage()
-        {
-            InitializeComponent();
-            Day.Text = RozvrhPage.GetDate();
-            viewModel = new ViewModel();
-            BindingContext = viewModel;
-        }
-        protected override bool OnBackButtonPressed()
-        {
-            if (!AcceptButton.IsVisible)
-                ResetView();
-            else
-                Shell.Current.GoToAsync("//RozvrhPage").Wait();
-            return true;
-        }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            Day.Text = RozvrhPage.GetDate();
-            ResetView();
-        }
-        private void ResetView()
-        {
-            viewModel.IsLoading = true;
-            PickerOfTeachers.IsVisible = true;
-            AcceptButton.IsVisible = true;
-            label1.IsVisible = true;
-            TeacherView.IsVisible = false;
-            TeacherName.Text = null;
-            TeacherName.IsVisible = false;
-            TeacherView.ItemsSource = null;
-            viewModel.IsLoading = false;
-        }
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            string selectedItem = PickerOfTeachers.SelectedItem as string;
-            if (selectedItem == null) return;
-            viewModel.IsLoading = true;
-            PickerOfTeachers.ItemsSource = null;
-            Dictionary<string, string> teachers = new Dictionary<string, string>
+        Dictionary<string, string> teachers = new Dictionary<string, string>
             {
                 { "Beneš Libor", "BE" },
                 { "Bezstarosti Pavel", "BZ" },
@@ -95,7 +54,48 @@ namespace Project_K.Views
                 { "Žemličková Šárka", "ZM" },
                 { "Ženíšková Eva", "ZN" }
             };
+        public static string teacherRealName;
+        private ViewModel viewModel;
+        public UcitelPickerPage()
+        {
+            InitializeComponent();
             PickerOfTeachers.ItemsSource = teachers.Keys.ToList();
+            Day.Text = RozvrhPage.GetDate();
+            viewModel = new ViewModel();
+            BindingContext = viewModel;
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            if (!AcceptButton.IsVisible)
+                ResetView();
+            else
+                Shell.Current.GoToAsync("//RozvrhPage").Wait();
+            return true;
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Day.Text = RozvrhPage.GetDate();
+            ResetView();
+        }
+        private void ResetView()
+        {
+            viewModel.IsLoading = true;
+            PickerOfTeachers.IsVisible = true;
+            AcceptButton.IsVisible = true;
+            label1.IsVisible = true;
+            TeacherView.IsVisible = false;
+            TeacherName.Text = null;
+            TeacherName.IsVisible = false;
+            TeacherView.ItemsSource = null;
+            viewModel.IsLoading = false;
+        }
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            string selectedItem = PickerOfTeachers.SelectedItem as string;
+            if (selectedItem == null) return;
+            viewModel.IsLoading = true;
+
             if (!teachers.TryGetValue(selectedItem, out teacherRealName))
             {
                 await DisplayAlert("Něco je špatně", $"Nenašli jsme učitele, prosím kontaktujte vývojáře", "OK");
