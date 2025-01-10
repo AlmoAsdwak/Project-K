@@ -2,6 +2,7 @@
 using Project_K.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -51,6 +52,7 @@ namespace Project_K.Views
             string selectedItem = PickerOfTeachers.SelectedItem as string;
             if (selectedItem == null) return;
             viewModel.IsLoading = true;
+            PickerOfTeachers.ItemsSource = null;
             Dictionary<string, string> teachers = new Dictionary<string, string>
             {
                 { "Beneš Libor", "BE" },
@@ -63,12 +65,10 @@ namespace Project_K.Views
                 { "Hloušek Milan", "HS" },
                 { "Hývl Jaroslav", "HY" },
                 { "Janko Michal", "JA" },
-                { "Jungová Miluše", "JU" },
                 { "Karpíšková Zlata", "KR" },
                 { "Kuntová Eva", "KT" },
                 { "Lang Jan", "LA" },
-                { "Langová Kateřina", "LV" },
-                { "Langová Martina", "LG" },
+                { "Lang Matěj", "LN" },
                 { "Lenc Tomáš", "LE" },
                 { "Loskot Roman", "LO" },
                 { "Mach Štěpán", "MH" },
@@ -85,7 +85,6 @@ namespace Project_K.Views
                 { "Radoňová Jana", "RA" },
                 { "Rejthar Richard", "RE" },
                 { "Ročín Igor", "RO" },
-                { "Silná Petra", "PS" },
                 { "Šolc Miloš", "SO" },
                 { "Špičan Jiří", "SP" },
                 { "Tichý Miroslav", "TI" },
@@ -96,7 +95,7 @@ namespace Project_K.Views
                 { "Žemličková Šárka", "ZM" },
                 { "Ženíšková Eva", "ZN" }
             };
-
+            PickerOfTeachers.ItemsSource = teachers.Keys.ToList();
             if (!teachers.TryGetValue(selectedItem, out teacherRealName))
             {
                 await DisplayAlert("Něco je špatně", $"Nenašli jsme učitele, prosím kontaktujte vývojáře", "OK");
