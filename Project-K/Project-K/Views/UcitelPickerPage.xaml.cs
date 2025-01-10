@@ -2,6 +2,7 @@
 using Project_K.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -51,51 +52,50 @@ namespace Project_K.Views
             string selectedItem = PickerOfTeachers.SelectedItem as string;
             if (selectedItem == null) return;
             viewModel.IsLoading = true;
+            PickerOfTeachers.ItemsSource = null;
             Dictionary<string, string> teachers = new Dictionary<string, string>
-                {
-                    { "Beneš Libor", "BE" },
-                    { "Bezstarosti Pavel", "PB" },
-                    { "Bursová Dagmar", "BS" },
-                    { "Ducháčková Michaela", "DU" },
-                    { "Filip Nathaniel", "NF" },
-                    { "Hertnon Shane", "CI" },
-                    { "Hloušek Jiří", "HJ" },
-                    { "Hloušek Milan", "HS" },
-                    { "Hývl Jaroslav", "HY" },
-                    { "Janko Michal", "JA" },
-                    { "Karpíšková Zlata", "KR" },
-                    { "Kuntová Eva", "KT" },
-                    { "Lang Matěj", "LN" },
-                    { "Lang Jan", "LA" },
-                    { "Lenc Tomáš", "LT" },
-                    { "Loskot Roman", "LO" },
-                    { "Mach Štěpán", "MH" },
-                    { "Markoš Martin", "MR" },
-                    { "Matějus Josef", "MJ" },
-                    { "Maťátko Jaroslav", "MA" },
-                    { "Mayerová Ilona", "MV" },
-                    { "Mercl Martin", "MC" },
-                    { "Macinka Michal", "MI" },
-                    { "Tichý Miroslav", "TI" },
-                    { "Němec Tadeáš", "NE" },
-                    { "Petera Jiří", "PE" },
-                    { "Petera Ondřej", "OP" },
-                    { "Penc Miroslav", "PN" },
-                    { "Podzimek David", "PZ" },
-                    { "Porter Lucie", "PO" },
-                    { "Radoňová Jana", "RA" },
-                    { "Rejthar Richard", "RE" },
-                    { "Ročín Igor", "RO" },
-                    { "Šolc Miloš", "MS" },
-                    { "Špičan Jiří", "SP" },
-                    { "Trnková Simona", "TK" },
-                    { "Trnka Pavel", "TR" },
-                    { "Zelba Josef", "ZE" },
-                    { "Záhořík Tomáš", "TZ" },
-                    { "Žemličková Šárka", "ZM" },
-                    { "Ženíšková Eva", "EZ" }
-                };
-
+            {
+                { "Beneš Libor", "BE" },
+                { "Bezstarosti Pavel", "BZ" },
+                { "Bursová Dagmar", "BS" },
+                { "Ducháčková Michaela", "DU" },
+                { "Filip Nathaniel", "FI" },
+                { "Hertnon Shane", "CI" },
+                { "Hloušek Jiří", "HU" },
+                { "Hloušek Milan", "HS" },
+                { "Hývl Jaroslav", "HY" },
+                { "Janko Michal", "JA" },
+                { "Karpíšková Zlata", "KR" },
+                { "Kuntová Eva", "KT" },
+                { "Lang Jan", "LA" },
+                { "Lang Matěj", "LN" },
+                { "Lenc Tomáš", "LE" },
+                { "Loskot Roman", "LO" },
+                { "Mach Štěpán", "MH" },
+                { "Markoš Martin", "MR" },
+                { "Matějus Josef", "MJ" },
+                { "Maťátko Jaroslav", "MA" },
+                { "Mayerová Ilona", "MV" },
+                { "Mercl Martin", "MC" },
+                { "Penc Miloslav", "PN" },
+                { "Petera Jiří", "PE" },
+                { "Petera Ondřej", "PT" },
+                { "Podzimek David", "PZ" },
+                { "Porter Lucie", "PO" },
+                { "Radoňová Jana", "RA" },
+                { "Rejthar Richard", "RE" },
+                { "Ročín Igor", "RO" },
+                { "Šolc Miloš", "SO" },
+                { "Špičan Jiří", "SP" },
+                { "Tichý Miroslav", "TI" },
+                { "Trnka Pavel", "TR" },
+                { "Trnková Simona", "TK" },
+                { "Záhořík Tomáš", "TZ" },
+                { "Zelba Josef", "ZE" },
+                { "Žemličková Šárka", "ZM" },
+                { "Ženíšková Eva", "ZN" }
+            };
+            PickerOfTeachers.ItemsSource = teachers.Keys.ToList();
             if (!teachers.TryGetValue(selectedItem, out teacherRealName))
             {
                 await DisplayAlert("Něco je špatně", $"Nenašli jsme učitele, prosím kontaktujte vývojáře", "OK");
